@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 
 from rest_framework import routers
 
-from .sitemaps import HomeSitemap, FaqSitemap, AboutSitemap, \
+from .sitemaps import HomeSitemap, FaqSitemap, \
      ListSitemap, ProfilesSitemap
 from . import views
 
@@ -17,7 +17,6 @@ sitemaps = {
     'home': HomeSitemap,
     'list': ListSitemap,
     'faq': FaqSitemap,
-    'about': AboutSitemap,
     'profiles': ProfilesSitemap,
 }
 
@@ -36,10 +35,6 @@ urlpatterns = [
          name='create'),
     path('faq/', TemplateView.as_view(template_name='profiles/FAQs.html'),
          name='faq'),
-    path('tips/', TemplateView.as_view(template_name='profiles/tips.html'),
-         name='tips'),
-    path('about/', TemplateView.as_view(template_name='profiles/about.html'),
-         name='about'),
     path('profiles-autocomplete', views.ProfilesAutocomplete.as_view(),
          name='profiles_autocomplete'),
     path('countries-autocomplete', views.CountriesAutocomplete.as_view(),

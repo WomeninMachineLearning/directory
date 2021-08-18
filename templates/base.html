@@ -66,19 +66,8 @@
 				<li class="nav-item {% block nav-create-classes %}{% endblock nav-create-classes %}">
 					<a class="nav-link h6" href="{% url 'profiles:create' %}">Create profile</a>
 				</li>
-				<li class="nav-item {% block nav-resources-classes %}{% endblock nav-resources-classes %}">
-          			<div class="dropdown">
-             			<button class="dropbtn nav-link h6">Resources
-               				<i class="fa fa-caret-down"></i>  <!--small triangle-->
-             			</button>
-            			<div class="dropdown-content">
-					    	<a href="{% url 'profiles:faq' %}">FAQ</a>
-              				<a href="{% url 'profiles:tips' %}">Tips</a>
-            			</div>
-          			</div>
-				</li>
-				<li class="nav-item {% block nav-about-classes %}{% endblock nav-about-classes %}">
-					<a class="nav-link h6" href="{% url 'profiles:about' %}">About</a>
+				<li class="nav-item {% block nav-faq-classes %}{% endblock nav-faq-classes %}">
+					<a class="nav-link h6" href="{% url 'profiles:faq' %}">FAQ</a>
 				</li>
 			</ul>
 		</div>

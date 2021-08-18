@@ -26,17 +26,6 @@ class FaqSitemap(sitemaps.Sitemap):
         return reverse(item)
 
 
-class AboutSitemap(sitemaps.Sitemap):
-    priority = 0.5
-    changefreq = 'yearly'
-
-    def items(self):
-        return ['profiles:about']
-
-    def location(self, item):
-        return reverse(item)
-
-
 class ListSitemap(sitemaps.Sitemap):
     changefreq = 'weekly'
     priority = 0.7
