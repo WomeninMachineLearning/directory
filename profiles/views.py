@@ -15,23 +15,9 @@ from django.views.generic.detail import DetailView
 from dal.autocomplete import Select2QuerySetView
 from rest_framework import viewsets
 
-from .models import Profile, Recommendation, Country
-from .forms import CreateProfileModelForm, RecommendModelForm
+from .models import Profile, Country
+from .forms import CreateProfileModelForm
 from .serializers import CountrySerializer, PositionsCountSerializer
-
-
-class Home(ListView):
-    template_name = 'profiles/home.html'
-    context_object_name = 'recommendations_sample'
-    model = Recommendation
-
-    def get_queryset(self):
-        sample = random.sample(
-            list(Recommendation.objects.all()
-                 .order_by('-id')[:100]),
-            6)
-
-        return sample
 
 
 class ListProfiles(ListView):
@@ -157,28 +143,6 @@ class CreateProfile(SuccessMessageMixin, CreateView):
 
     def get_success_url(self):
         return reverse('profiles:detail', kwargs={'pk': self.object.pk})
-
-
-class CreateRecommendation(SuccessMessageMixin, FormView):
-    template_name = 'profiles/recommendation_form.html'
-    form_class = RecommendModelForm
-    success_message = 'Your recommendation has been submitted successfully!'
-
-    def form_valid(self, form):
-        recommendation = form.save()
-        self.profile_id = recommendation.profile.id
-        return super(CreateRecommendation, self).form_valid(form)
-
-    def get_success_url(self):
-        return reverse('profiles:detail', kwargs={'pk': self.profile_id})
-
-    def get_initial(self):
-        initial = super(CreateRecommendation, self).get_initial()
-        profile_id = self.kwargs.get('pk')
-        if profile_id is not None:
-            profile = get_object_or_404(Profile, pk=profile_id)
-            initial.update({'profile': profile})
-        return initial
 
 
 class ProfilesAutocomplete(Select2QuerySetView):

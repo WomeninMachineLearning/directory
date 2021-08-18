@@ -71,14 +71,8 @@
 							</dl>
 						</div>
 						<div class="keywords-list col-lg-3 mt-1 d-none d-lg-block">{%if profile.modalities %}{{ profile.modalities }}, {% endif %} {%if profile.domains %}{{ profile.domains }}, {% endif %}{{ profile.keywords}}</div>
-						<div class="col-md-1 mt-1 pl-4 d-none d-md-block text-primary">
-							{% if profile.recommendation_set.all|length %}
-							<span><i class="fas fa-comment num-rec"></i> {{ profile.recommendation_set.all|length }}</span>
-							{% endif %}
-						</div>
 						<div class="actions col-xs-12 col-sm-4 col-md-2 text-xs-left text-sm-right">
 							<a class="btn pill-btn btn-outline-secondary w-75 m-2" href="{% url 'profiles:detail' profile.id %}">View Profile</a>
-							<a class="btn pill-btn btn-outline-secondary w-75 m-2" href="{% url 'profiles:recommend_profile' profile.id %}">Recommend</a>
 						</div>
 					</div>
 				</div>

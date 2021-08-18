@@ -5,7 +5,7 @@ from django.core.management.color import no_style
 from django.core.management.base import BaseCommand, CommandError
 
 import winrepo.settings as settings
-from profiles.models import Country, Profile, Recommendation
+from profiles.models import Country, Profile
 
 class Command(BaseCommand):
     help = 'Re-create fixtures based on models'
@@ -99,41 +99,6 @@ class Command(BaseCommand):
             )
             profiles += [profile]
             profile.save()
-
-        recommendation_words = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' \
-        'Curabitur maximus, elit in ornare convallis, eros mi pharetra erat, ' \
-        'sed dictum dolor nulla viverra odio. Vivamus pulvinar blandit massa ' \
-        'ac facilisis. Ut et odio fringilla, dictum tellus non, aliquam est.' \
-        'Maecenas aliquet in sem vel vestibulum. Nullam ornare pulvinar malesuada. ' \
-        'Donec massa urna, dapibus ut arcu ut, aliquet consequat orci. Donec ' \
-        'gravida ut ligula fringilla ullamcorper. Mauris quis lacinia augue. ' \
-        'In hac habitasse platea dictumst. Praesent et iaculis neque. ' \
-        'Vestibulum dignissim.'.split(' ')
-
-        for profile in profiles:
-
-            name = random.choice(names)
-            surname = random.choice(surnames)
-            fullname = name + ' ' + surname
-            institution = random.choice(institutions)
-            slug = fullname.lower().replace(' ', '-')
-            email = slug + '@' + institution.lower().replace(' ', '-') + '.edu'
-            position = random.choice(Profile.POSITION_CHOICES)[0]
-
-            recommendation = ' '.join(
-                recommendation_words[0:2] + \
-                list(random.sample(recommendation_words[2:], 20))
-            )
-
-            Recommendation(
-                profile=profile,
-                reviewer_name=fullname,
-                reviewer_email=email,
-                reviewer_position=position,
-                reviewer_institution=institution,
-                seen_at_conf=True,
-                comment=recommendation,
-            ).save()
 
         management.call_command(
             'dumpdata',

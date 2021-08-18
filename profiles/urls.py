@@ -24,7 +24,7 @@ sitemaps = {
 app_name = 'profiles'
 
 urlpatterns = [
-    path('', views.Home.as_view(),
+    path('', TemplateView.as_view(template_name='profiles/home.html'),
          name='home'),
     path('list/', views.ListProfiles.as_view(),
          name='index'),
@@ -34,10 +34,6 @@ urlpatterns = [
          name='edit'),
     path('list/create', views.CreateProfile.as_view(),
          name='create'),
-    path('list/<int:pk>/recommend', views.CreateRecommendation.as_view(),
-         name='recommend_profile'),
-    path('list/recommend', views.CreateRecommendation.as_view(),
-         name='recommend'),
     path('faq/', TemplateView.as_view(template_name='profiles/FAQs.html'),
          name='faq'),
     path('tips/', TemplateView.as_view(template_name='profiles/tips.html'),
@@ -51,5 +47,4 @@ urlpatterns = [
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
          name='django.contrib.sitemaps.views.sitemap'),
     path('', include(router.urls)),
-#     path('api/', include('rest_framework.urls', namespace='rest_framework')),
 ]
