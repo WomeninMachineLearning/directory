@@ -15,14 +15,14 @@
 {% block nav-repository-classes %}{{ block.super }} active{% endblock nav-repository-classes %}
 
 {% block full_page_content %}
-	<div id="list-search" class="w-100 grey-bg">
+	<div id="list-search" class="w-100 bg-secondary">
 		<form method="get">
 			<div id="search-container" class="form-row p-2">
 				<div class="col-12 col-sm-6 offset-sm-3">
 					<div id="search-form" class="input-group bg-white rounded">
 						<div class="input-group-prepend p-1 w-100">
 							<input id="search" class="form-control" type="search" placeholder="Enter keywords, e.g. 'Attention MEG France'" name="s" autofocus {% if request.GET.s %}value="{{ request.GET.s }}"  onfocus="var temp_value=this.value; this.value=''; this.value=temp_value"{% endif %}/>
-							<input id="search-btn" type="submit" value="Search" class="btn btn-secondary pl-4 pr-4 rounded mx-auto">
+							<input id="search-btn" type="submit" value="Search" class="btn btn-primary pl-4 pr-4 rounded mx-auto">
 						</div>
 					</div>
 				</div>
@@ -31,13 +31,13 @@
 				<div id="underrepresented-countries" class="col-12 col-sm-9 offset-sm-3 col-lg-3 offset-lg-3">
 					<div class="form-check custom-control custom-checkbox">
 						<input type="checkbox" class="custom-control-input" id="underrepresented-only" name="ur" {% if request.GET.ur %}checked{% endif %}>
-						<label class="custom-control-label" for="underrepresented-only">Under Represented Countries Only</label>
+						<label class="custom-control-label text-white" for="underrepresented-only">Under Represented Countries Only</label>
 					</div>
 				</div>
 				<div id="senior-positions" class="col-12 col-sm-9 offset-sm-3 col-lg-3 offset-lg-0">
 					<div class="form-check custom-control custom-checkbox">
 						<input type="checkbox" class="custom-control-input" id="senior-only" name="senior"{% if request.GET.senior %} checked{% endif %}>
-						<label class="custom-control-label" for="senior-only">Senior Positions Only</label>
+						<label class="custom-control-label text-white" for="senior-only">Senior Positions Only</label>
 					</div>
 				</div>
 			</div>
@@ -48,7 +48,7 @@
 {% block content %}
 	{% if profiles %}
 		<div class="pb-3 no-gutters entries-number">
-			<span id="search-message"> <span class="text-secondary font-weight-bold"> {{ page_obj.paginator.count }}</span> entries found. </span>
+			<span id="search-message"> <span class="text-primary font-weight-bold"> {{ page_obj.paginator.count }}</span> entries found. </span>
 		</div>
 		<div id="results-table" class="infinite-container">
 			{% for profile in profiles %}
@@ -56,9 +56,9 @@
 					<div class="row my-4 no-gutters">
 						<div class="profile_id d-none">{{ profile.id }}</div>
 						<div class="col-xs-12 col-sm-4 col-lg-3">
-							<h5 class="text-primary font-weight-bold">{{ profile.name }}</h5>
+							<h5 class="text-secondary font-weight-bold">{{ profile.name }}</h5>
 						</div>
-						<div class="col-xs-12 col-sm-4 col-lg-3 details-grey text-muted">
+						<div class="col-xs-12 col-sm-4 col-lg-3 text-tertiary">
 							<p class="m-1"><i class="fas fa-user"></i> <span>{{ profile.position }}</span></p>
 							<p class="m-1"><i class="fas fa-university"></i> <span>{{ profile.institution }}</span></p>
 							<p class="m-1"><i class="fas fa-map-marker-alt"></i> <span>{{ profile.country }}</span></p>
@@ -70,9 +70,9 @@
 								<dt>Methods</dt><dd>{{ profile.methods }}</dd>
 							</dl>
 						</div>
-						<div class="keywords-list col-lg-3 mt-1 d-none d-lg-block">{%if profile.modalities %}{{ profile.modalities }}, {% endif %} {%if profile.domains %}{{ profile.domains }}, {% endif %}{{ profile.keywords}}</div>
+						<div class="keywords-list col-lg-3 mt-1 d-none d-lg-block text-tertiary">{%if profile.modalities %}{{ profile.modalities }}, {% endif %} {%if profile.domains %}{{ profile.domains }}, {% endif %}{{ profile.keywords}}</div>
 						<div class="actions col-xs-12 col-sm-4 col-md-2 text-xs-left text-sm-right">
-							<a class="btn pill-btn btn-outline-secondary w-75 m-2" href="{% url 'profiles:detail' profile.id %}">View Profile</a>
+							<a class="btn pill-btn btn-outline-primary w-75 m-2" href="{% url 'profiles:detail' profile.id %}">View Profile</a>
 						</div>
 					</div>
 				</div>
@@ -88,7 +88,7 @@
 		</div>
 
 	{% else %}
-		<p>No matching entries.</p>
+		<p class="text-secondary">No matching entries.</p>
 	{% endif %}
 
 	<!-- from http://jsfiddle.net/gilbitron/Lt2wH/ -->

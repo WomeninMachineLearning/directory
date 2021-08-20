@@ -24,27 +24,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 .navbar-custom .navbar-brand,
 .navbar-custom .navbar-text {
-    color: #555;
+    color: #666;
 }
 .navbar-custom .navbar-nav .nav-link {
-    color: #555;
+    color: #666;
 }
 
 /* Settings for active links in the navigation bar */
 .navbar-custom .nav-item.active .nav-link {
-	color: #10898B; /*red #CC063E*/
+	color:#007aff; /* teal #10898B; red #CC063E*/
 	text-decoration: underline;
 	font-weight: bold;
 }
 
 /* Settings when cursor is on the top of item in navigation bar*/
 .navbar-custom .nav-item:hover .nav-link {
-    color: #10898B;
+    color: #007aff;
 }
 
 /* The dropdown container */
 .dropdown {
-    display: inline-block
+    display: inline-block;
     overflow: hidden;
 }
 
@@ -53,7 +53,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 16px;
     border: none;
     outline: none;
-    color: #555;
+    color: #666;
     padding: 8px 10px;
     background-color: inherit;
     font-family: inherit;
@@ -64,7 +64,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Settings when cursor is on top of dropdown menu */
 .navbar a:hover, .dropdown:hover .dropbtn {
     background-color: none;
-    color: #10898B;
+    color: #007aff;
     text-decoration: underline;
     font-weight: bold;
 }
@@ -87,7 +87,7 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: none;
     display: block;
     text-align: left;
-    color: #555;
+    color: #666;
 }
 
 /* Show grey-bar selection when cursor is on the top of dropdown-menu item */
@@ -110,13 +110,6 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: 'Nunito', sans-serif;
 }
 
-.headtitle>.women {
-	font-family: 'Pacifico',sans-serif;
-	color: #CC063E;
-	font-size: 3rem;
-	text-shadow: 0px 0px 1px white;
-}
-
 .page-footer a {
 	color: #fff;
 }
@@ -126,7 +119,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .link-secondary {
-	color: #CC063E;
+	color:#444444;
 }
 
 .pill-btn {

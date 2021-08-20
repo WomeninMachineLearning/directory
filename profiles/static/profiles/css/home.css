@@ -65,7 +65,7 @@
 	-ms-transform: translate(-50%,-50%);
     text-align: center;
     font-size: 16px;
-    color: #555555;
+    color: #666;
 }
 
 .position-title {
@@ -75,7 +75,7 @@
 
 .position-text {
 	font-size: 14px;
-	color: #555555;
+	color: #666;
 }
 
 #map-container {

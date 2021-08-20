@@ -22,7 +22,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-	<link rel="shortcut icon" type="image/png" href="{% static 'images/win_brain.png' %}" />
+	<link rel="shortcut icon" type="image/png" href="{% static 'images/logo_wiml_blue.png' %}" />
 
 	{% block fonts %}
 		<link href="https://fonts.googleapis.com/css?family=Nunito%7COpen+Sans%7CPacifico%7CMerriweather:blackitalic" rel="stylesheet">
@@ -48,12 +48,11 @@
 	<nav class="navbar fixed-top navbar-custom navbar-light shadow-sm navbar-expand-md">
 		<a class="navbar-brand" href="{% url 'profiles:home' %}">
 			<picture id="winrepo-logo">
-				<source srcset="{% static 'images/logo_fill_triangles_wb.webp' %}" type="image/webp">
-				<source srcset="{% static 'images/logo_fill_triangles_wb.png' %}" type="image/png"> 
-				<source srcset="{% static 'images/logo_fill_triangles_wb.jpg' %}" type="image/jpeg"> 
-				<img src="{% static 'images/logo_fill_triangles_wb.jpg' %}" alt="Winrepo Logo">
+				<!-- <source srcset="{% static 'images/logo_fill_triangles_wb.webp' %}" type="image/webp"> -->
+				<source srcset="{% static 'images/logo_wiml_blue.png' %}" type="image/png"> 
+				<!-- <source srcset="{% static 'images/logo_fill_triangles_wb.jpg' %}" type="image/jpeg">  -->
+				<img src="{% static 'images/logo_wiml_blue.png' %}" alt="WiML Logo">
 			</picture>
-			{% comment %} <img src="{% static 'images/logo_fill_triangles_wb.png' %}" alt="Winrepo Logo" height="38"> {% endcomment %}
 		</a>
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<ul class="nav navbar-nav ml-auto">
@@ -103,7 +102,7 @@
 	{% endblock page_container %}
 
 	{% block footer %}
-	<footer class="page-footer font-small bg-primary text-white p-4 mt-4">
+	<footer class="page-footer font-small bg-secondary text-white p-4 mt-4">
 		<div class="d-flex flex-wrap justify-content-center">
 			<div class="col-12 col-md-5 text-md-left text-sm-center" style="vertical-align:middle;line-height:1.5rem">
 				<span class="font-weight-bold mx-1 align-middle">WiML Directory</span>

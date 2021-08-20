@@ -72,10 +72,10 @@ $(document).ready(function() {
 
         $('#entries-number').text(totProfiles);
 
-        drawPieChart('chartPhD', profiles.student, totProfiles, 'PhD students', '#CC063E');
-        drawPieChart('chartPostDoc', profiles.postdoc, totProfiles, 'Post-doc', '#E83535');
-        drawPieChart('chartSenior', profiles.senior, totProfiles, 'Senior', '#FD9407');
-        drawPieChart('chartOther', profiles.other, totProfiles, 'Other', '#999999');
+        drawPieChart('chartPhD', profiles.student, totProfiles, 'PhD students', '#ffa217');
+        drawPieChart('chartPostDoc', profiles.postdoc, totProfiles, 'Post-doc', '#ffa217');
+        drawPieChart('chartSenior', profiles.senior, totProfiles, 'Senior', '#ffa217');
+        drawPieChart('chartOther', profiles.other, totProfiles, 'Other', '#ffa217');
     }
 
     function drawMap(divId, jsonData) {
@@ -85,7 +85,7 @@ $(document).ready(function() {
         const data = google.visualization.arrayToDataTable(array);
 
         const options = {
-            colorAxis: { colors: ['#a0c1c1', '#10898B'] },
+            colorAxis: { colors: ['#a2ccfc', '#3f4f61'] },
             legend: 'none',
             tooltip: { isHtml: false },
         };
