@@ -72,10 +72,10 @@ $(document).ready(function() {
 
         $('#entries-number').text(totProfiles);
 
-        drawPieChart('chartPhD', profiles.student, totProfiles, 'PhD students', '#ffa217');
-        drawPieChart('chartPostDoc', profiles.postdoc, totProfiles, 'Post-doc', '#ffa217');
-        drawPieChart('chartSenior', profiles.senior, totProfiles, 'Senior', '#ffa217');
-        drawPieChart('chartOther', profiles.other, totProfiles, 'Other', '#ffa217');
+        drawPieChart('chartPhD', profiles.student, totProfiles, 'PhD students', '#fcad74');
+        drawPieChart('chartPostDoc', profiles.postdoc, totProfiles, 'Post-doc', '#fcad74');
+        drawPieChart('chartSenior', profiles.senior, totProfiles, 'Senior', '#fcad74');
+        drawPieChart('chartOther', profiles.other, totProfiles, 'Other', '#fcad74');
     }
 
     function drawMap(divId, jsonData) {
