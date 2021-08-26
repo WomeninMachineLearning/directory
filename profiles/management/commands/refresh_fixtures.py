@@ -5,10 +5,8 @@ from django.core.management.base import BaseCommand, CommandError
 import winrepo.settings as settings
 from profiles.models import Country, User, Profile
 from profiles.models import (
-    STRUCTURE_CHOICES,
-    MODALITIES_CHOICES,
     METHODS_CHOICES,
-    DOMAINS_CHOICES,
+    APPLICATIONS_CHOICES,
     MONTHS_CHOICES,
     POSITION_CHOICES,
 )
@@ -74,10 +72,8 @@ class Command(BaseCommand):
         profiles = []
         for _ in range(n_profiles):
 
-            brain_structure = random.choice(STRUCTURE_CHOICES)[0]
-            modalities = random.choice(MODALITIES_CHOICES)[0]
             methods = random.choice(METHODS_CHOICES)[0]
-            domains = random.choice(DOMAINS_CHOICES)[0]
+            applications = random.choice(APPLICATIONS_CHOICES)[0]
 
             grad_month = random.choice(MONTHS_CHOICES)[0]
             grad_year = str(random.randint(1950, 2020))
@@ -109,11 +105,9 @@ class Command(BaseCommand):
                 position=position,
                 grad_month=grad_month,
                 grad_year=grad_year,
-                brain_structure=brain_structure,
-                modalities=modalities,
                 methods=methods,
-                domains=domains,
-                keywords='',
+                applications=applications,
+                keywords='My long keyword that I want to see if it gets cut correctly for small screen sizes, Another long annoying keyword',
             )
             profiles += [profile]
             profile.save()

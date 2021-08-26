@@ -39,35 +39,19 @@
 		Field of Research
 	</h5>
 	<div id="field-of-research-list" class="w-100 p-4 mt-3 d-flex flex-row grey-bg rounded">
-		<div class="w-25 p-2 text-center">
-			<h6 class="text-secondary font-weight-bold">Brain Area</h6>
-			<ul class="list-group list-group-flush">
-				{% for structure in user.profile.brain_structure_labels %}
-				<li class="list-group-item grey-bg" style="border: none; padding: 0;">{{ structure }} </li>
-				{% endfor %}
-			</ul>
-		</div>
-		<div class="w-25 p-2 text-center">
-			<h6 class="text-secondary font-weight-bold">Domain</h6>
-			<ul class="list-group list-group-flush">
-				{% for domain in user.profile.domains_labels %}
-				<li class="list-group-item grey-bg" style="border: none; padding: 0;">{{ domain }} </li>
-				{% endfor %}
-			</ul>
-		</div>
-		<div class="w-25 p-2 text-center">
-			<h6 class="text-secondary font-weight-bold">Modalities</h6>
-			<ul class="list-group list-group-flush">
-				{% for modality in user.profile.modalities_labels %}
-				<li class="list-group-item grey-bg" style="border: none; padding: 0;">{{ modality }} </li>
-				{% endfor %}
-			</ul>
-		</div>
-		<div class="w-25 p-2 text-center">
+		<div class="w-50 p-2 text-center">
 			<h6 class="text-secondary font-weight-bold">Methods</h6>
 			<ul class="list-group list-group-flush">
 				{% for method in user.profile.methods_labels %}
 				<li class="list-group-item grey-bg" style="border: none; padding: 0;">{{ method }} </li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="w-50 p-2 text-center">
+			<h6 class="text-secondary font-weight-bold">Applications</h6>
+			<ul class="list-group list-group-flush">
+				{% for application in user.profile.applications_labels %}
+				<li class="list-group-item grey-bg" style="border: none; padding: 0;">{{ application }} </li>
 				{% endfor %}
 			</ul>
 		</div>

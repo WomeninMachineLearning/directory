@@ -7,29 +7,40 @@ from django.urls import reverse
 
 from multiselectfield import MultiSelectField
 
-
+US = 'Undergraduate student'
+MS = 'Masters student'
+PD = 'Predoc/postbac fellow/resident'
 PHD = 'PhD student'
-MDR = 'Medical Doctor'
 PDR = 'Post-doctoral researcher'
-JRE = 'Researcher/ scientist'
-SRE = 'Senior researcher/ scientist'
+JRE = 'Research scientist/engineer'
+SRE = 'Senior research scientist/engineer'
+JDS = 'Data scientist/engineer'
+RDS = 'Senior data scientist/engineer'
+SWE = 'Software engineer'
 LEC = 'Lecturer'
 ATP = 'Assistant Professor'
 ACP = 'Associate Professor'
 PRF = 'Professor'
-DIR = 'Group leader/ Director/ Head of Department'
+PM = 'Program/product manager'
+DIR = 'Director/founder/advisor'
 
 POSITION_CHOICES = (
+    (US,'Undergraduate student'),
+    (MS, 'Masters student'),
+    (PD, 'Predoc/postbac fellow/resident'),
     (PHD, 'PhD student'),
-    (MDR, 'Medical Doctor'),
     (PDR, 'Post-doctoral researcher'),
-    (JRE, 'Researcher/ scientist'),
-    (SRE, 'Senior researcher/ scientist'),
+    (JRE, 'Research scientist/engineer'),
+    (SRE, 'Senior research scientist/engineer'),
+    (JDS, 'Data scientist/engineer'),
+    (RDS, 'Senior data scientist/engineer'),
+    (SWE, 'Software engineer'),
     (LEC, 'Lecturer'),
     (ATP, 'Assistant Professor'),
     (ACP, 'Associate Professor'),
     (PRF, 'Professor'),
-    (DIR, 'Group leader/ Director/ Head of Department')
+    (PM, 'Program/product manager'),
+    (DIR, 'Director/founder/advisor'),
 )
 
 MONTHS_CHOICES = (
@@ -47,64 +58,33 @@ MONTHS_CHOICES = (
     ('12', 'December')
 )
 
-STRUCTURE_CHOICES = (
-    ('N', 'Neuron'),
-    ('L', 'Layer'),
-    ('C', 'Column'),
-    ('R', 'Region'),
-    ('W', 'Whole Brain')
-)
-
-MODALITIES_CHOICES = (
-    ('EP', 'Electrophysiology (EEG, MEG, ECoG)'),
-    ('OE', 'Other electrophysiology'),
-    ('MR', 'MRI'),
-    ('PE', 'PET'),
-    ('DT', 'DTI'),
-    ('BH', 'Behavioural'),
-    ('ET', 'Eye Tracking'),
-    ('BS', 'Brain Stimulation'),
-    ('GT', 'Genetics'),
-    ('FN', 'fNIRS'),
-    ('LE', 'Lesions and Inactivations'),
-)
-
 METHODS_CHOICES = (
-    ('UV', 'Univariate'),
-    ('MV', 'Multivariate'),
-    ('PM', 'Predictive Models'),
-    ('DC', 'DCM'),
-    ('CT', 'Connectivity'),
-    ('CM', 'Computational Modeling'),
-    ('AM', 'Animal Models')
+    ('SL', 'Supervised learning'),
+    ('UL', 'Unsupervised learning'),
+    ('ALG', 'Algorithms: active, online, multi-task learning, etc.'),
+    ('DL', 'Deep learning'),
+    ('RL', 'Reinforcement learning and planning'),
+    ('REL', 'Representation learning'),
+    ('PR', 'Probabilistic methods'),
+    ('OPT','Optimization methods'),
+    ('LT', 'Learning theory'),
+    ('TR', 'Trustworthy ML: safety, robustness, transparency, fairness, privacy, interpretability'),
+    ('HAI', 'Humans and AI'),
 )
 
-DOMAINS_CHOICES = (
-    ('CG', 'Cognition (general)'),
-    ('MM', 'Memory'),
-    ('SS', 'Sensory systems'),
-    ('MO', 'Motor Systems'),
-    ('LG', 'Language'),
-    ('EM', 'Emotion'),
-    ('PN', 'Pain'),
-    ('LE', 'Learning'),
-    ('AT', 'Attention'),
-    ('DE', 'Decision Making'),
-    ('DV', 'Developmental'),
-    ('SL', 'Sleep'),
-    ('CN', 'Consciousness'),
-    ('CL', 'Clinical (general)'),
-    ('DM', 'Dementia'),
-    ('PK', 'Parkinson'),
-    ('DD', 'Other degenerative diseases'),
-    ('PS', 'Psychiatry'),
-    ('AD', 'Addiction'),
-    ('ON', 'Oncology'),
-    ('EV', 'Evolutionary'),
-    ('CM', 'Cellular and Molecular'),
-    ('BI', 'Bioinformatics'),
-    ('NC', 'Neuropharmacology'),
-    ('ET', 'Ethics')
+APPLICATIONS_CHOICES = (
+    ('AUD', 'Audio and Speech Processing'),
+    ('CV', 'Computer Vision'),
+    ('NLP', 'Natural Language Processing (NLP)'),
+    ('TS', 'Time Series Analysis'),
+    ('ROB', 'Robotics'),
+    ('CB', 'Computational biology'),
+    ('NS', 'Neuroscience'),
+    ('PS', 'Physical sciences'),
+    ('HC', 'Healthcare'),
+    ('SG', 'Social good'),
+    ('CS', 'Climate science'),
+    ('DEP', 'Deployment of AI/ML systems')
 )
 
 
@@ -166,27 +146,18 @@ class User(AbstractBaseUser):
 
 
 class Profile(models.Model):
-    
 
     @classmethod
     def get_position_choices(cls):
         return POSITION_CHOICES
 
     @classmethod
-    def get_structure_choices(cls):
-        return STRUCTURE_CHOICES
-
-    @classmethod
-    def get_modalities_choices(cls):
-        return MODALITIES_CHOICES
-
-    @classmethod
     def get_methods_choices(cls):
         return METHODS_CHOICES
 
     @classmethod
-    def get_domains_choices(cls):
-        return DOMAINS_CHOICES
+    def get_applications_choices(cls):
+        return APPLICATIONS_CHOICES
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     is_public = models.BooleanField(default=True)
@@ -204,10 +175,8 @@ class Profile(models.Model):
     grad_month = models.CharField(max_length=2, choices=MONTHS_CHOICES,
                                   blank=True)
     grad_year = models.CharField(max_length=4, blank=True)
-    brain_structure = MultiSelectField(choices=STRUCTURE_CHOICES, blank=True)
-    modalities = MultiSelectField(choices=MODALITIES_CHOICES, blank=True)
     methods = MultiSelectField(choices=METHODS_CHOICES, blank=True)
-    domains = MultiSelectField(choices=DOMAINS_CHOICES, blank=True)
+    applications = MultiSelectField(choices=APPLICATIONS_CHOICES, blank=True)
     keywords = models.CharField(max_length=250, blank=True)
     publish_date = models.DateTimeField(default=timezone.now)
     last_updated = models.DateTimeField(auto_now=True)
@@ -221,21 +190,13 @@ class Profile(models.Model):
     def get_absolute_url(self):
         return reverse('profiles:detail', kwargs={'pk': self.id})
 
-    def brain_structure_labels(self):
-        return [dict(STRUCTURE_CHOICES).get(item, item)
-                for item in self.brain_structure]
-
-    def modalities_labels(self):
-        return [dict(MODALITIES_CHOICES).get(item, item)
-                for item in self.modalities]
-
     def methods_labels(self):
         return [dict(METHODS_CHOICES).get(item, item)
                 for item in self.methods]
 
-    def domains_labels(self):
-        return [dict(DOMAINS_CHOICES).get(item, item)
-                for item in self.domains]
+    def applications_labels(self):
+        return [dict(APPLICATIONS_CHOICES).get(item, item)
+                for item in self.applications]
 
     def grad_month_labels(self):
         return dict(MONTHS_CHOICES).get(self.grad_month)

@@ -4,7 +4,7 @@
 {% load my_tags %}
 
 {% block title %}
-	{{ block.super }} - Repository
+	{{ block.super }} - Directory
 {% endblock title %}
 
 {% block css %}
@@ -21,7 +21,7 @@
 				<div class="col-12 col-sm-6 offset-sm-3">
 					<div id="search-form" class="input-group bg-white rounded">
 						<div class="input-group-prepend p-1 w-100">
-							<input id="search" class="form-control" type="search" placeholder="Enter keywords, e.g. 'Attention MEG France'" name="s" autofocus {% if request.GET.s %}value="{{ request.GET.s }}"  onfocus="var temp_value=this.value; this.value=''; this.value=temp_value"{% endif %}/>
+							<input id="search" class="form-control" type="search" placeholder="Enter keywords, e.g. 'Vision multi-task learning France'" name="s" autofocus {% if request.GET.s %}value="{{ request.GET.s }}"  onfocus="var temp_value=this.value; this.value=''; this.value=temp_value"{% endif %}/>
 							<input id="search-btn" type="submit" value="Search" class="btn btn-primary pl-4 pr-4 rounded mx-auto">
 						</div>
 					</div>
@@ -66,11 +66,11 @@
 
 						<div class="d-none">
 							<dl>
-								<dt>Brain Area</dt><dd>{{ profile.brain_structure }}</dd>
 								<dt>Methods</dt><dd>{{ profile.methods }}</dd>
+								<dt>Applications</dt><dd>{{ profile.applications }}</dd>
 							</dl>
 						</div>
-						<div class="keywords-list col-lg-3 mt-1 d-none d-lg-block text-tertiary">{%if profile.modalities %}{{ profile.modalities }}, {% endif %} {%if profile.domains %}{{ profile.domains }}, {% endif %}{{ profile.keywords}}</div>
+						<div class="keywords-list col-lg-3 mt-1 d-none d-lg-block text-tertiary">{{ profile.keywords}}</div>
 						<div class="actions col-xs-12 col-sm-4 col-md-2 text-xs-left text-sm-right">
 							<a class="btn pill-btn btn-outline-primary w-75 m-2" href="{% url 'profiles:detail' profile.id %}">View Profile</a>
 						</div>

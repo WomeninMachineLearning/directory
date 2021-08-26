@@ -7,13 +7,11 @@ from .models import Profile, Country
 default_user = {
     'name': 'Test Profile',
     'position': 'Lecturer',
-    'institution': 'Test insitution',
+    'institution': 'Test institution',
     'grad_month': '06',
     'grad_year': '2010',
-    'brain_structure': 'N',
-    'modalities': 'EP',
-    'methods': 'UV',
-    'domains': 'CG',
+    'methods': 'SL',
+    'applications': 'HC',
     'keywords': 'test one two',
 }
 

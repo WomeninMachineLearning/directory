@@ -34,10 +34,8 @@ class UserProfileForm(forms.ModelForm):
             'position',
             'grad_month',
             'grad_year',
-            'brain_structure',
-            'modalities',
             'methods',
-            'domains',
+            'applications',
             'keywords',
         )
         labels = {
@@ -47,10 +45,8 @@ class UserProfileForm(forms.ModelForm):
             'webpage': _('Linked In or web page'),
             'grad_month': _('Date PhD was obtained: Month'),
             'grad_year': _('Year'),
-            'brain_structure': _('Field of Research - Brain Structure'),
-            'modalities': _('Field of Research - Modalities'),
             'methods': _('Field of Research - Methods'),
-            'domains': _('Field of Research - Domain'),
+            'applications': _('Field of Research - Applications'),
             'keywords': _('Field of Research - Keywords'),
         }
         help_texts = {
@@ -64,21 +60,19 @@ class UserProfileForm(forms.ModelForm):
                           'proposed options to ease future searches.'),
             'grad_month': _('Leave empty if no PhD (yet).'),
             'grad_year': _('Please enter the full year (4 digits).'),
-            'domains': _('There are free keywords at the end of the '
-                         'questionnaire to input further information.'),
             'keywords': _('Optionally you can add some more specific terms '
                           'to describe your field of research, separated '
                           'by commas.'),
         }
-        widgets = {
-            'country': ModelSelect2(
-                url='profiles:countries_autocomplete',
-                attrs={
-                    # 'data-minimum-input-length': 2,
-                    'data-placeholder': 'Search Country...',
-                },
-            )
-        }
+        # widgets = {
+        #     'country': ModelSelect2(
+        #         url='profiles:countries_autocomplete',
+        #         attrs={
+        #             # 'data-minimum-input-length': 2,
+        #             'data-placeholder': 'Search Country...',
+        #         },
+        #     )
+        # }
 
     def save(self, user=None):
         user_profile = super(UserProfileForm, self).save(commit=False)

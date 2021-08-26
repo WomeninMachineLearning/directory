@@ -1,4 +1,3 @@
-import random
 import re
 import time
 from functools import reduce
@@ -13,7 +12,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import ValidationError
 from django.db.models import Count, Q
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.utils.encoding import force_bytes
@@ -70,38 +69,25 @@ class ListProfiles(ListView):
                 #   x[0]
                 #   for x in Profile.get_position_choices()
                 #   if st_regex.match(x[1]))
-                matching_structures = list(
-                    Q(brain_structure__contains=x[0])
-                    for x
-                    in Profile.get_structure_choices()
-                    if st_regex.match(x[1]))
-                matching_modalities = list(
-                    Q(modalities__contains=x[0])
-                    for x
-                    in Profile.get_modalities_choices()
-                    if st_regex.match(x[1]))
                 matching_methods = list(
                     Q(methods__contains=x[0])
                     for x
                     in Profile.get_methods_choices()
                     if st_regex.match(x[1]))
-                matching_domains = list(
-                    Q(domains__contains=x[0])
+                matching_applications = list(
+                    Q(applications__contains=x[0])
                     for x
-                    in Profile.get_domains_choices()
+                    in Profile.get_applications_choices()
                     if st_regex.match(x[1]))
 
                 st_conditions = [
                     Q(name__icontains=st),
                     Q(institution__icontains=st),
                     Q(position__icontains=st),
-                    Q(brain_structure__icontains=st),
                     Q(country__name__icontains=st),
                     Q(keywords__icontains=st),
-                 ] + matching_structures \
-                   + matching_modalities \
-                   + matching_methods \
-                   + matching_domains
+                 ] + matching_methods \
+                   + matching_applications
 
                 q_st = and_(reduce(or_, st_conditions), q_st)
 
@@ -114,7 +100,7 @@ class ListProfiles(ListView):
         # create filter on senior profiles
         if is_senior:
             senior_profiles_keywords = ('Senior', 'Lecturer', 'Professor',
-                                        'Director', 'Principal')
+                                        'Director')
             # position must contain one of the words(case insensitive)
             q_senior = reduce(or_, (Q(position__icontains=x)
                                     for x
