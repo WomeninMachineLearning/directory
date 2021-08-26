@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+	{{ block.super }} - Edit Profile
+{% endblock title %}
+
+{% block nav-create-classes %}active{% endblock nav-create-classes %}
+
+{% block content %}
+{% if form.errors %}
+	{% for error in form.non_field_errors %}
+		<div class="alert alert-danger">
+			<strong>{{ error|escape }}</strong>
+		</div>
+	{% endfor %}
+{% endif %}
+
+<div class="container-fluid">
+	<div class="row no-gutters">
+		<div class="col-12">
+			<h2 class="text-primary font-weight-bold">Profile</h2>
+			<div class="pt-2 mt-4 w-100 text-muted">
+				<form method="post">
+					{% csrf_token %}
+					{{ form.name|as_crispy_field }}
+					{{ form.institution|as_crispy_field }}
+					{{ form.country|as_crispy_field }}
+					{{ form.position|as_crispy_field }}
+					{{ form.contact_email|as_crispy_field }}
+					{{ form.webpage|as_crispy_field }}
+					<div class="form-row">
+						<div class="form-group col-md-6 mb-0">
+							{{ form.grad_month|as_crispy_field }}
+						</div>
+						<div class="form-group col-md-6 mb-0">
+							{{ form.grad_year|as_crispy_field }}
+						</div>
+					</div>
+					{{ form.brain_structure|as_crispy_field }}
+					{{ form.modalities|as_crispy_field }}
+					{{ form.methods|as_crispy_field }}
+					{{ form.domains|as_crispy_field }}
+					{{ form.keywords|as_crispy_field }}
+					{{ form.captcha }}
+					
+					<div class="text-right">
+						<a class="btn btn-outline-danger pill-btn" href="{% url 'profiles:user' %}" role="button">
+							Cancel
+						</a>
+						<button type="submit" class="btn btn-primary pill-btn">
+							Submit
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

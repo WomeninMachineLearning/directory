@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}
+	{{ block.super }} - My Account
+{% endblock title %}
+
+{% block nav-repository-classes %}active{% endblock nav-repository-classes %}
+
+{% block content %}
+
+<div class="container-fluid">
+	<div class="row no-gutters">
+		<div class="col-12">
+			<h2 class="text-primary font-weight-bold">My Account</h2>
+
+			<h3 class="text-primary font-weight-bold mt-5">
+				<span class="text-secondary"><i class="fas fa-chevron-circle-right"></i></span>
+				Are you sure?
+			</h3>
+			<p class="m-1">
+				This action cannot be undone.
+				This will permanently delete the user and related profile information.
+			</p>
+
+			<div class="pt-2 mt-4 w-100 text-muted">
+				<form method="post">
+					{% csrf_token %}
+					{{ form }}
+					<div class="text-right">
+						<a class="btn btn-outline-primary pill-btn" href="{% url 'profiles:user' %}" role="button">
+							Cancel
+						</a>
+						<button type="submit" class="btn btn-danger pill-btn">
+							Delete
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock content %}

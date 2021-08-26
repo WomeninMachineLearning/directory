@@ -1,0 +1,6 @@
+{% load abs_url %}
+
+Thank you for registering for Directory of Women in Machine Learning!
+
+Please, confirm your e-mail address following the link:
+{% abs_url 'profiles:signup_confirm' %}?token={{ token }}&uid={{ uid }}

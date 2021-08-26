@@ -1,11 +1,17 @@
 import random
-from django.db import connection
 from django.core import management
-from django.core.management.color import no_style
 from django.core.management.base import BaseCommand, CommandError
 
 import winrepo.settings as settings
-from profiles.models import Country, Profile
+from profiles.models import Country, User, Profile
+from profiles.models import (
+    STRUCTURE_CHOICES,
+    MODALITIES_CHOICES,
+    METHODS_CHOICES,
+    DOMAINS_CHOICES,
+    MONTHS_CHOICES,
+    POSITION_CHOICES,
+)
 
 class Command(BaseCommand):
     help = 'Re-create fixtures based on models'
@@ -61,16 +67,19 @@ class Command(BaseCommand):
 
         Profile.objects.all().delete()
 
+
+        # Accounts
+
         n_profiles = kwargs['profiles']
         profiles = []
         for _ in range(n_profiles):
 
-            brain_structure = random.choice(Profile.STRUCTURE_CHOICES)[0]
-            modalities = random.choice(Profile.MODALITIES_CHOICES)[0]
-            methods = random.choice(Profile.METHODS_CHOICES)[0]
-            domains = random.choice(Profile.DOMAINS_CHOICES)[0]
+            brain_structure = random.choice(STRUCTURE_CHOICES)[0]
+            modalities = random.choice(MODALITIES_CHOICES)[0]
+            methods = random.choice(METHODS_CHOICES)[0]
+            domains = random.choice(DOMAINS_CHOICES)[0]
 
-            grad_month = random.choice(Profile.MONTHS_CHOICES)[0]
+            grad_month = random.choice(MONTHS_CHOICES)[0]
             grad_year = str(random.randint(1950, 2020))
 
             name = random.choice(names)
@@ -80,12 +89,21 @@ class Command(BaseCommand):
             slug = fullname.lower().replace(' ', '-')
             email = slug + '@' + institution.lower().replace(' ', '-') + '.edu'
 
-            position = random.choice(Profile.POSITION_CHOICES)[0]
+            position = random.choice(POSITION_CHOICES)[0]
 
-            profile = Profile(
+            user = User.objects.create_user(
+                username=name+surname+str(random.randint(1,100)),
                 name=fullname,
                 email=email,
-                webpage=slug + '.me',
+                password='user'
+            )
+            user.save()     
+
+            profile = Profile(
+                user=user,
+                name=fullname,
+                contact_email=email,
+                webpage='http://'+slug+'.me',
                 institution=institution,
                 country=random.choice(countries),
                 position=position,
@@ -100,9 +118,12 @@ class Command(BaseCommand):
             profiles += [profile]
             profile.save()
 
+
         management.call_command(
             'dumpdata',
             'profiles',
+            'auth',
+            natural_primary=True,
             natural_foreign=True,
             output='profiles/fixtures/winrepo.json'
         )

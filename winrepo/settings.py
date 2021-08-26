@@ -25,11 +25,12 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
+ENV = config('ENV', default='Local')
 
 ALLOWED_HOSTS = \
     ['*'] \
     if DEBUG else \
-    ['localhost', 'gfryns.pythonanywhere.com', 'www.winrepo.org']
+    ['localhost', 'wiml.pythonanywhere.com', 'www.directory.wimlworkshop.org']
 
 
 # Application definition
@@ -101,6 +102,12 @@ DATABASES = {
     }
 }
 
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = 'profiles:user'
+LOGOUT_REDIRECT_URL = 'profiles:home'
+
+AUTH_USER_MODEL = 'profiles.User'
+
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
@@ -123,7 +130,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+AUTHENTICATION_BACKENDS = ['profiles.backends.EmailOrUsernameModelBackend']
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
@@ -148,11 +155,22 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, "static-collected")
 
 # reCaptcha settings
-RECAPTCHA_PUBLIC_KEY = '6Lc8d5YUAAAAAGeYG5ilVvTNiV8GgwGUxmDFpEhG'
+RECAPTCHA_PUBLIC_KEY = config('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY')
 NOCAPTCHA = False
 RECAPTCHA_USE_SSL = False
 RECAPTCHA_DOMAIN = 'www.recaptcha.net'
+
+# email server settings
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT', default=25, cast=int)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS') == 'True'
+EMAIL_USE_SSL = config('EMAIL_USE_SSL') == 'True'
+
+EMAIL_FROM = 'no-reply@wimlworkshop.org'
+EMAIL_SUBJECT_PREFIX = 'WiML - '
 
 # Sites settings
 SITE_ID = config('SITE_ID', cast=int)
@@ -186,4 +204,6 @@ REST_FRAMEWORK = {
     ]
 }
 
+if ENV != 'Local':
+    SECURE_SSL_REDIRECT = True
 # SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']

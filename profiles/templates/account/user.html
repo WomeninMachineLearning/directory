@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block title %}
+	{{ block.super }} - My Account
+{% endblock title %}
+
+{% block nav-repository-classes %}active{% endblock nav-repository-classes %}
+
+{% block content %}
+
+<div class="container-fluid">
+	<h2 class="text-primary font-weight-bold">My Account</h2>
+	<div class="row mt-5">
+		<div class="col-12 col-lg-5 pr-3">
+			<h3 class="text-primary font-weight-bold mt-2">
+				<span class="text-secondary"><i class="fas fa-chevron-circle-right"></i></span>
+				Information
+			</h3>
+			<p class="m-1"><i class="fas fa-user"></i> {{ user.name }}</p>
+			<p class="m-1"><i class="fas fa-envelope"></i> {{ user.email }}</p>
+
+			<div class="text-center m-3">
+				<a class="btn btn-outline-primary pill-btn" href="{% url 'profiles:user_edit' %}">Edit</a>
+				<a class="btn btn-outline-primary pill-btn" href="{% url 'profiles:user_change_password' %}">Change password</a>
+			</div>
+		</div>
+			
+		<div class="col-12 col-lg-7 pl-3 mt-5 mt-lg-0">
+			<h3 class="text-primary font-weight-bold mt-2">
+				<span class="text-secondary"><i class="fas fa-chevron-circle-right"></i></span>
+				Public Profile
+				{% if user.profile %}
+					<div class="float-right">
+						<a class="btn btn-outline-primary pill-btn" href="{% url 'profiles:user_profile_edit' %}">Edit</a>
+					</div>
+				{% endif %}
+			</h3>
+
+			{% if user.profile %}
+				<div class="p-3 mt-4 border rounded">
+					<div class="container-fluid">
+						<div class="row no-gutters">
+							<div class="col-xs-6 col-sm-8 col-md-9 text-muted details-grey">
+								<h2 class="text-primary font-weight-bold">{{ user.profile.name }}</h2>
+								<p class="m-1"><i class="fas fa-user"></i> {{ user.profile.position }}</p>
+								<p class="m-1"><i class="fas fa-university"></i> {{ user.profile.institution }}</p>
+								<p class="m-1"><i class="fas fa-map-marker-alt"></i> {{ user.profile.country }}</p>
+								{% if user.profile.grad_year %}<p class="m-1"><i class="fas fa-graduation-cap"></i> {{ user.profile.grad_month_labels }} {{ user.profile.grad_year }}</p>{% endif %}
+							</div>
+						</div>
+					</div>
+					
+					<div id="field-of-research">
+						<h5 class="text-primary font-weight-bold mt-5">
+							<span class="text-secondary"><i class="fas fa-chevron-circle-right"></i></span>
+							Field of Research
+						</h5>
+						<div id="field-of-research-list" class="w-100 p-1 pt-3 pb-3 mt-3 d-flex flex-row grey-bg rounded">
+							<div class="w-25 p-0 text-center">
+								<h6 class="text-secondary font-weight-bold">Brain Area</h6>
+								<ul class="list-group list-group-flush">
+									{% for structure in user.profile.brain_structure_labels %}
+									<li class="list-group-item grey-bg" style="border: none; padding: 0;">{{ structure }} </li>
+									{% endfor %}
+								</ul>
+							</div>
+							<div class="w-25 p-0 text-center">
+								<h6 class="text-secondary font-weight-bold">Domain</h6>
+								<ul class="list-group list-group-flush">
+									{% for domain in user.profile.domains_labels %}
+									<li class="list-group-item grey-bg" style="border: none; padding: 0;">{{ domain }} </li>
+									{% endfor %}
+								</ul>
+							</div>
+							<div class="w-25 p-0 text-center">
+								<h6 class="text-secondary font-weight-bold">Modalities</h6>
+								<ul class="list-group list-group-flush">
+									{% for modality in user.profile.modalities_labels %}
+									<li class="list-group-item grey-bg" style="border: none; padding: 0;">{{ modality }} </li>
+									{% endfor %}
+								</ul>
+							</div>
+							<div class="w-25 p-0 text-center">
+								<h6 class="text-secondary font-weight-bold">Methods</h6>
+								<ul class="list-group list-group-flush">
+									{% for method in user.profile.methods_labels %}
+									<li class="list-group-item grey-bg" style="border: none; padding: 0;">{{ method }} </li>
+									{% endfor %}
+								</ul>
+							</div>
+						</div>
+					</div>
+					
+					{% if user.profile.keywords %}
+					<div id="keywords">
+						<h5 class="text-primary font-weight-bold mt-5">
+							<span class="text-secondary"><i class="fas fa-chevron-circle-right"></i></span>
+							Other keywords
+						</h5>
+						<div class="grey-bg p-4 mt-3 rounded">
+							<p>{{ user.profile.keywords }}</p>
+						</div>
+					</div>
+					{% endif %}
+				</div>
+			{% else %}
+
+				<p>Please fill out a more detailed work profile! This information can be made public in our directory.</p>
+
+				<a class="btn btn-primary ml-5 mr-5" style="white-space: normal;" href="{% url 'profiles:user_profile_edit' %}" role="button">
+					Further information
+				</a>
+			
+			{% endif %}
+
+		</div>
+	</div>
+
+	<hr class="mt-5 mb-5" />
+
+	<div class="row mt-5">
+		<div class="col-12 text-right">
+			<a class="btn btn-danger pill-btn" href="{% url 'profiles:user_delete' %}" role="button">
+				Delete Account
+			</a>
+		</div>
+	</div>
+</div>
+
+
+{% endblock content %}
