@@ -262,7 +262,7 @@ class UserCreateView(CreateView):
 
 class UserCreateConfirmView(TemplateView):
     template_name = 'registration/signup_confirm.html'
-    success_message = 'Your account has been activated successfully! Please, log-in!'
+    success_message = 'Your account has been activated successfully. Please, log-in!'
     error_message = 'There was an error with your activation. Please, try again.'
 
     token_generator = default_token_generator
@@ -279,7 +279,7 @@ class UserCreateConfirmView(TemplateView):
                 messages.success(self.request, self.success_message)
             else:
                 messages.error(self.request, self.error_message)
-            return redirect('profiles:login')
+            # return redirect('profiles:login')
 
         return super().get(request, *args, **kwargs)
 
@@ -288,7 +288,8 @@ class UserPasswordResetView(FormView):
     form_class = PasswordResetForm
     template_name = 'registration/reset_password.html'
     token_generator = default_token_generator
-    success_message = 'If your e-mail address is in our directory, you will receive an e-mail soon on how to reset your password.'
+    success_message = 'Please check your email address for directions on how to reset your password.'
+    error_message = 'This email is not linked to a WiML account.'
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -303,7 +304,7 @@ class UserPasswordResetView(FormView):
             token = self.token_generator.make_token(user)
             user_reset_password_email(self.request, user, uid, token).send()
         except User.DoesNotExist:
-            time.sleep(4)
+            messages.error(self.request, self.error_message)
 
         messages.success(self.request, self.success_message)
         return super().form_valid(form)
@@ -315,7 +316,7 @@ class UserPasswordResetView(FormView):
 class UserPasswordResetConfirmView(FormView):
     form_class = SetPasswordForm
     template_name = 'registration/reset_password_confirm.html'
-    success_message = 'Your password has been resetted! Please, log-in!'
+    success_message = 'Your password has been reset. Please, log-in!'
     error_message = 'There was an error with your password reset. Please, try again.'
 
     token_generator = default_token_generator

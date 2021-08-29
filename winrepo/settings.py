@@ -130,7 +130,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = ['profiles.backends.EmailOrUsernameModelBackend']
+# AUTHENTICATION_BACKENDS = ['profiles.backends.EmailOrUsernameModelBackend']
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
@@ -169,7 +169,7 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = config('EMAIL_USE_TLS') == 'True'
 EMAIL_USE_SSL = config('EMAIL_USE_SSL') == 'True'
 
-EMAIL_FROM = 'no-reply@wimlworkshop.org'
+EMAIL_FROM = 'noreply@wimlworkshop.org'
 EMAIL_SUBJECT_PREFIX = 'WiML - '
 
 # Sites settings

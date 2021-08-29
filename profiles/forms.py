@@ -64,15 +64,6 @@ class UserProfileForm(forms.ModelForm):
                           'to describe your field of research, separated '
                           'by commas.'),
         }
-        # widgets = {
-        #     'country': ModelSelect2(
-        #         url='profiles:countries_autocomplete',
-        #         attrs={
-        #             # 'data-minimum-input-length': 2,
-        #             'data-placeholder': 'Search Country...',
-        #         },
-        #     )
-        # }
 
     def save(self, user=None):
         user_profile = super(UserProfileForm, self).save(commit=False)

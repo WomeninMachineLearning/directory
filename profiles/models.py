@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.contrib.auth.base_user import BaseUserManager
 from django.db import models
 from django.utils import timezone
@@ -101,43 +101,45 @@ class Country(models.Model):
         return self.name
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, password, **extra_fields):
+    def create_user(self, email, password=None, **extra_fields):
         if not email:
-            raise ValueError(_('The Email must be set'))
+            raise ValueError(_('The email must be set'))
 
         extra_fields.setdefault('is_active', True)
         
         email = self.normalize_email(email)
-        user = self.model(email=email, **extra_fields)
+        user = self.model(email=email, password=password, **extra_fields)
         user.set_password(password)
-        user.save()
+        user.save(using=self._db)
         return user
 
     def create_superuser(self, email, password, **extra_fields):
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
-        extra_fields.setdefault('is_active', True)
-
-        if extra_fields.get('is_staff') is not True:
-            raise ValueError(_('Superuser must have is_staff=True.'))
-        if extra_fields.get('is_superuser') is not True:
-            raise ValueError(_('Superuser must have is_superuser=True.'))
-        return self.create_user(email, password, **extra_fields)
+        super_user = self.create_user(email, password, **extra_fields)
+        super_user.is_superuser = True
+        super_user.is_staff = True
+        super_user.save(using=self._db)
+        return super_user
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
 
     username = models.SlugField(max_length=50, unique=True)
     name = models.CharField(max_length=200)
     email = models.EmailField(unique=True)
     is_active = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=timezone.now)
+    is_superuser = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
 
-    USERNAME_FIELD = 'username'
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
 
     objects = UserManager()
 
     def __str__(self):
+        return self.email
+
+    def get_short_name(self):
         return self.email
 
     @property
