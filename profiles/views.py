@@ -243,14 +243,14 @@ class UserCreateView(CreateView):
     form_class = UserCreateForm
     template_name = 'registration/signup.html'
     token_generator = default_token_generator
-
+    
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return redirect('profiles:user')
         return super().get(request, *args, **kwargs)
 
     def form_valid(self, form):
-        valid = super().form_valid(form)
+        valid = super().form_valid(form)        
         uid =_to_token(self.object, 'email')
         token = self.token_generator.make_token(self.object)
         user_create_confirm_email(self.request, self.object, uid, token).send()
@@ -275,11 +275,12 @@ class UserCreateConfirmView(TemplateView):
         if token and user is not None:
             if self.token_generator.check_token(user, token):
                 user.is_active = True
+                user.save()
 
                 messages.success(self.request, self.success_message)
             else:
                 messages.error(self.request, self.error_message)
-            # return redirect('profiles:login')
+            return redirect('profiles:login')
 
         return super().get(request, *args, **kwargs)
 
