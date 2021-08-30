@@ -130,7 +130,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# AUTHENTICATION_BACKENDS = ['profiles.backends.EmailOrUsernameModelBackend']
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
@@ -189,7 +188,7 @@ BOOTSTRAP4 = {
 
     # The complete URL to the Bootstrap CSS file
     # (None means derive it from base_url)
-    'css_url':  STATIC_URL + 'css/bootstrap-winrepo.min.css',
+    'css_url':  STATIC_URL + 'css/bootstrap-wiml.min.css',
 
     # The complete URL to the Bootstrap JavaScript file
     # (None means derive it from base_url)

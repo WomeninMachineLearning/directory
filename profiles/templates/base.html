@@ -25,6 +25,8 @@
 	<link rel="shortcut icon" type="image/png" href="{% static 'images/logo_wiml_blue.png' %}" />
 
 	{% block fonts %}
+		<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@200&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Nunito%7COpen+Sans%7CPacifico%7CMerriweather:blackitalic" rel="stylesheet">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro%7CSource+Sans+Pro:400,700%7CSource+Serif+Pro:400">
 		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
@@ -66,7 +68,7 @@
 					<a class="nav-link h6" href="{% url 'profiles:faq' %}">FAQ</a>
 				</li>
 				{% if user.is_authenticated %}
-					<!-- <li class="nav-item dropdown {% block nav-account-classes %}{% endblock nav-account-classes %}">
+					<!-- <li class="nav-item dropdown {% block nav-accounts-classes %}{% endblock nav-accounts-classes %}">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					  {{ user.username }}
 					</a>
@@ -76,7 +78,7 @@
 					</div>
 				 	</li> -->
 
-					<li class="nav-item {% block nav-bla-classes %}{% endblock nav-bla-classes %}">
+					<li class="nav-item {% block nav-account-classes %}{% endblock nav-account-classes %}">
 						<a class="nav-link h6" href="{% url 'profiles:user' %}">My account</a>
 					</li>
 					<li class="nav-item {% block nav-logout-classes %}{% endblock nav-logout-classes %}">

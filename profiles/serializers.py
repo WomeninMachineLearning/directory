@@ -5,12 +5,14 @@ from .models import Profile, Country
 
 
 class CountrySerializer(serializers.ModelSerializer):
-    profiles_count = serializers.ReadOnlyField(source='profile_set.count')
+    profiles_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Country
         fields = ('id', 'name', 'profiles_count')
 
+    def get_profiles_count(self, obj):
+        return obj.profile_set.filter(is_public=True).count()
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:

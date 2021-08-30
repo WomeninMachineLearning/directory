@@ -10,7 +10,7 @@
 
 #list-search .custom-checkbox .custom-control-input:checked~.custom-control-label::before,
 #list-search .custom-checkbox .custom-control-input:checked~.custom-control-label::after {
-  background-color:#1c898a;
+  background-color:#267abb;
   border-radius: 2px;
 }
 
@@ -88,7 +88,7 @@
     opacity: 0;
 }
 #back-to-top:hover {
-    background: #007aff;
+    background: #267abb;
 }
 
 #back-to-top.show {

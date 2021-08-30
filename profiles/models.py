@@ -162,7 +162,7 @@ class Profile(models.Model):
         return APPLICATIONS_CHOICES
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
-    is_public = models.BooleanField(default=True)
+    is_public = models.BooleanField(default=False)
 
     first_name = models.CharField(max_length=100, blank=False)
     last_name = models.CharField(max_length=100, blank=False)
@@ -170,9 +170,7 @@ class Profile(models.Model):
     webpage = models.URLField(blank=True)
     institution = models.CharField(max_length=100, blank=False)
     country = models.ForeignKey(Country,
-                                on_delete=models.CASCADE,
-                                related_name='profiles',
-                                null=True)
+                                on_delete=models.CASCADE)
     position = models.CharField(max_length=50, choices=POSITION_CHOICES,
                                 blank=True)
     grad_month = models.CharField(max_length=2, choices=MONTHS_CHOICES,

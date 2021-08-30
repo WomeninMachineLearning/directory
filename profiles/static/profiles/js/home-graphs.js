@@ -31,14 +31,14 @@ $(document).ready(function() {
     }
 
     function preparePiecharts(positionsData) {
-        const seniorRe = /senior|lecturer|professor|director|principal/i;
-        const postdocRe = /post-doc/i;
-        const studentRe = /phd\sstudent/i;
-        
+        const profRe = /lecturer|professor/i;
+        const seniorRe = /senior|director/i;
+        const studentRe = /student|resident/i;
+
         let totProfiles = 0;
         const profiles = {
+            'prof': 0,
             'senior': 0,
-            'postdoc': 0,
             'student': 0,
             'other': 0
         }
@@ -49,8 +49,8 @@ $(document).ready(function() {
             if (pos.position.match(seniorRe)) {
                 profiles.senior += pos.profiles_count;
             }
-            else if (pos.position.match(postdocRe)) {
-                profiles.postdoc += pos.profiles_count;
+            else if (pos.position.match(profRe)) {
+                profiles.prof += pos.profiles_count;
             }
             else if (pos.position.match(studentRe)) {
                 profiles.student += pos.profiles_count;
@@ -61,21 +61,21 @@ $(document).ready(function() {
         };
 
         $('#student-percent').text(percentString(profiles.student / totProfiles));
-        $('#postdoc-percent').text(percentString(profiles.postdoc / totProfiles));
+        $('#prof-percent').text(percentString(profiles.prof / totProfiles));
         $('#senior-percent').text(percentString(profiles.senior / totProfiles));
         $('#other-percent').text(percentString(profiles.other / totProfiles));
 
         $('#student-count').text(profiles.student + ' profiles');
-        $('#postdoc-count').text(profiles.postdoc + ' profiles');
+        $('#prof-count').text(profiles.prof + ' profiles');
         $('#senior-count').text(profiles.senior + ' profiles');
         $('#other-count').text(profiles.other + ' profiles');
 
         $('#entries-number').text(totProfiles);
 
-        drawPieChart('chartPhD', profiles.student, totProfiles, 'PhD students', '#fcad74');
-        drawPieChart('chartPostDoc', profiles.postdoc, totProfiles, 'Post-doc', '#fcad74');
-        drawPieChart('chartSenior', profiles.senior, totProfiles, 'Senior', '#fcad74');
-        drawPieChart('chartOther', profiles.other, totProfiles, 'Other', '#fcad74');
+        drawPieChart('chartStudent', profiles.student, totProfiles, 'Students', '#e8a861');
+        drawPieChart('chartOther', profiles.other, totProfiles, 'mid-career', '#e8a861');
+        drawPieChart('chartProf', profiles.prof, totProfiles, 'Senior academic', '#e8a861');
+        drawPieChart('chartSenior', profiles.senior, totProfiles, 'Other senior positions', '#e8a861');
     }
 
     function drawMap(divId, jsonData) {

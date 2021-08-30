@@ -1,0 +1,5 @@
+- Install Node.js (>= 14 recommended)
+- Install packages (in folder, run `npm install`)
+- Edit colors overrides in styles.scss
+- Compile CSS by running `npm run scss`
+- The new css file will be generated next to styles.scss

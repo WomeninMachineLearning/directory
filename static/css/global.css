@@ -1,9 +1,9 @@
 body {
-	font-family:'Open Sans', 'Lato', sans-serif;
+	font-family:'Roboto','Lato', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family:'Nunito', 'Lato', sans-serif;
+	font-family:'Catamaran','Roboto', sans-serif;
 }
 
 .full_page {
@@ -32,14 +32,14 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Settings for active links in the navigation bar */
 .navbar-custom .nav-item.active .nav-link {
-	color:#007aff; /* teal #10898B; red #CC063E*/
+	color:#267abb; /* teal #10898B; red #CC063E*/
 	text-decoration: underline;
 	font-weight: bold;
 }
 
 /* Settings when cursor is on the top of item in navigation bar*/
 .navbar-custom .nav-item:hover .nav-link {
-    color: #007aff;
+    color:#267abb;
 }
 
 /* The dropdown container */
@@ -64,7 +64,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Settings when cursor is on top of dropdown menu */
 .navbar a:hover, .dropdown:hover .dropbtn {
     background-color: none;
-    color: #007aff;
+    color: #267abb;
     text-decoration: underline;
     font-weight: bold;
 }

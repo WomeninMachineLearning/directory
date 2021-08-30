@@ -88,6 +88,7 @@ celerybeat-schedule
 .venv
 venv/
 ENV/
+pyvenv.cfg
 
 # Spyder project settings
 .spyderproject
@@ -119,3 +120,6 @@ pylintrc
 
 # conda files
 Scripts
+
+# node modules for boostrap
+tools/bootstrap-wiml/node_modules/

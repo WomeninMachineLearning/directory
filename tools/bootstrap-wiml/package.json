@@ -1,0 +1,21 @@
+{
+  "name": "bootstrap-wiml",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "node-sass -o css/ css/ --output-style compressed",
+    "scss:full": "node-sass -o css/ css/"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.1.0",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.6.0"
+  },
+  "devDependencies": {
+    "node-sass": "^6.0.1"
+  }
+}

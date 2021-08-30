@@ -34,8 +34,6 @@ urlpatterns = [
     path('faq/', TemplateView.as_view(template_name='profiles/FAQs.html'),
          name='faq'),
 
-    path('profiles-autocomplete/', views.ProfilesAutocomplete.as_view(),
-         name='profiles_autocomplete'),
     path('countries-autocomplete/', views.CountriesAutocomplete.as_view(),
          name='countries_autocomplete'),
 

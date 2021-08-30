@@ -49,7 +49,7 @@
 <div class="container-fluid bg-secondary text-white pt-5 pb-5" id="intro-container">
 	<div class="row no-gutters p-4">
 		<div class="col-md-4 offset-md-4 text-center">
-			<h1 class="headtitle"> Women in Machine Learning </h1>
+			<h1> Women in Machine Learning </h1>
 		</div>
 	</div>
 	<div class="row no-gutters p-4">
@@ -83,37 +83,13 @@
 			<table>
 				<tr>
 					<td class="donutCell">
-						<div id="chartPhD" class="donutDiv"></div>
+						<div id="chartStudent" class="donutDiv"></div>
 						<div id="student-percent" class="donutValue">%</div>
 					</td>
 				</tr>
 			</table>
-			<span class="position-title text-tertiary" id="PhDtext">PhD</span>
+			<span class="position-title text-tertiary" id="Studenttext">Student</span>
 			<p id="student-count" class="position-text"> profiles</p>
-		</div>
-		<div class="p-2 text-center donutTab">
-			<table>
-				<tr>
-					<td class="donutCell">
-						<div id="chartPostDoc" class="donutDiv"></div>
-						<div id="postdoc-percent" class="donutValue">%</div>
-					</td>
-				</tr>
-			</table>
-			<span class="position-title text-tertiary" id="PostDoctext">Post-doc</span>
-			<p id="postdoc-count" class="position-text"> profiles</p>
-		</div>
-		<div class="p-2 text-center donutTab">
-			<table>
-				<tr>
-					<td class="donutCell">
-						<div id="chartSenior" class="donutDiv"></div>
-						<div id="senior-percent" class="donutValue">%</div>
-					</td>
-				</tr>
-			</table>
-			<span class="position-title text-tertiary" id="Seniortext">Senior</span>
-			<p id="senior-count" class="position-text"> profiles</p>
 		</div>
 		<div class="p-2 text-center donutTab">
 			<table>
@@ -124,8 +100,32 @@
 					</td>
 				</tr>
 			</table>
-			<span class="position-title text-tertiary" id="Othertext">Other</span>
+			<span class="position-title text-tertiary" id="Othertext">Mid-career</span>
 			<p id="other-count" class="position-text"> profiles</p>
+		</div>
+		<div class="p-2 text-center donutTab">
+			<table>
+				<tr>
+					<td class="donutCell">
+						<div id="chartProf" class="donutDiv"></div>
+						<div id="prof-percent" class="donutValue">%</div>
+					</td>
+				</tr>
+			</table>
+			<span class="position-title text-tertiary" id="Proftext">Academic</span>
+			<p id="prof-count" class="position-text"> profiles</p>
+		</div>
+		<div class="p-2 text-center donutTab">
+			<table>
+				<tr>
+					<td class="donutCell">
+						<div id="chartSenior" class="donutDiv"></div>
+						<div id="senior-percent" class="donutValue">%</div>
+					</td>
+				</tr>
+			</table>
+			<span class="position-title text-tertiary" id="Seniortext">Other senior</span>
+			<p id="senior-count" class="position-text"> profiles</p>
 		</div>
 	</div>
 
@@ -143,5 +143,4 @@
 	{{ block.super }}
 	<script src="https://www.gstatic.com/charts/loader.js"></script>
 	<script src="{% static 'profiles/js/home-graphs.js' %}?v=1"></script>
-	<script src="{% static 'profiles/js/home-gtag.js' %}?v=1"></script>
 {% endblock footer_scripts %}

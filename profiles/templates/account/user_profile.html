@@ -12,10 +12,10 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'profiles/css/style.css' %}?v=3" />
 {% endblock css %}
 
-{% block nav-repository-classes %}active{% endblock nav-repository-classes %}
+{% block nav-account-classes %}active{% endblock nav-account-classes %}
 
 {% block full_page_content %}
-	<div id="list-search" class="w-100 bg-primary" style="height:250px; margin-bottom:-150px;"></div>
+	<div id="list-search" class="w-100 bg-secondary" style="height:250px; margin-bottom:-150px;"></div>
 {% endblock full_page_content %}
 
 {% block content %}
@@ -69,6 +69,17 @@
 	</div>
 </div>
 {% endif %}
+
+<div id="public">
+	<h5 class="text-primary font-weight-bold mt-5">
+		<span class="text-secondary"><i class="fas fa-chevron-circle-right"></i></span>
+		Public profile?
+	</h5>
+	<div class="grey-bg p-4 mt-3 rounded">
+		<p>{% if user.profile.is_public %} Yes, this profile is public. {% else %} No, this profile is private. {% endif %} </p>
+	</div>
+</div>
+
 
 
 <div id="results-nav" class="border-top pt-2 mt-4 w-100 text-muted">

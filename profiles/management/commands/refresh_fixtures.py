@@ -109,6 +109,7 @@ class Command(BaseCommand):
                 methods=methods,
                 applications=applications,
                 keywords='My long keyword that I want to see if it gets cut correctly for small screen sizes, Another long annoying keyword',
+                is_public=random.random() > 0.2,
             )
             profiles += [profile]
             profile.save()

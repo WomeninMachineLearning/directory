@@ -1,0 +1,14 @@
+// Wiml Directory overrides
+$theme-colors: (
+	"primary": #267ABB,
+	"secondary": #444,
+	"tertiary": #666,
+	"quaternary": #E8A861,
+	"quinary": #999999,
+	"senary":#3f4f61,
+	"success": #7abb26,
+	"danger": #ff8800,
+);
+
+// Bootstrap defaults
+@import "node_modules/bootstrap/scss/bootstrap";

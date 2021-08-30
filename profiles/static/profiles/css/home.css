@@ -81,19 +81,3 @@
 #map-container {
 	max-width: 800px;
 }
-
-/* carousel */
-#reco-carousel {
-	min-height: 240px;
-}
-
-.carousel-inner {
-	max-width: 800px;
-}
-.carousel-control-next, .carousel-control-prev, .carousel-indicators {
-    filter: invert(50%);
-}
-
-.quote-icon {
-	font-size: .8em;
-}

@@ -57,7 +57,8 @@ class ListProfiles(ListView):
         is_senior = self.request.GET.get('senior') == 'on'
 
         # create filter on search terms
-        q_st = ~Q(pk=None)  # always true
+        # q_st = ~Q(pk=None)  # always true
+        q_st = Q(is_public=True)
         if s is not None:
             # split search terms and filter empty words (if successive spaces)
             search_terms = list(filter(None, s.split(' ')))
@@ -358,24 +359,6 @@ class UserPasswordResetConfirmView(FormView):
         return reverse('profiles:login')
 
 
-class ProfilesAutocomplete(Select2QuerySetView):
-    def get_queryset(self):
-        profiles = Profile.objects.all()
-
-        # If search terms in request, split each word and search for them
-        # in name & institution
-        if self.q:
-            qs = ~Q(pk=None)  # always true
-            search_terms = list(filter(None, self.q.split(' ')))
-            for st in search_terms:
-                qs = and_(or_(Q(name__icontains=st),
-                              Q(institution__icontains=st)), qs)
-
-            profiles = profiles.filter(qs)
-
-        return profiles
-
-
 class CountriesAutocomplete(Select2QuerySetView):
     def get_queryset(self):
         countries = Country.objects.all()
@@ -394,7 +377,7 @@ class CountriesAutocomplete(Select2QuerySetView):
 
 
 class RepresentedCountriesViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Country.objects.annotate(profiles_count=Count('profiles')) \
+    queryset = Country.objects.annotate(profiles_count=Count('profile')) \
                               .filter(profiles_count__gt=0)
     serializer_class = CountrySerializer
     authentication_classes = []
@@ -404,6 +387,7 @@ class TopPositionsViewSet(viewsets.ReadOnlyModelViewSet):
     authentication_classes = []
 
     queryset = Profile.objects.all() \
+        .filter(is_public=True) \
         .values('position') \
         .annotate(profiles_count=Count('id')) \
         .order_by('-profiles_count')
