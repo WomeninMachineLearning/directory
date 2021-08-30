@@ -97,7 +97,8 @@ class Command(BaseCommand):
 
             profile = Profile(
                 user=user,
-                name=fullname,
+                first_name=name,
+                last_name=surname,
                 contact_email=email,
                 webpage='http://'+slug+'.me',
                 institution=institution,

@@ -66,12 +66,24 @@
 					<a class="nav-link h6" href="{% url 'profiles:faq' %}">FAQ</a>
 				</li>
 				{% if user.is_authenticated %}
-					<li class="nav-item {% block nav-account-classes %}{% endblock nav-account-classes %}">
+					<!-- <li class="nav-item dropdown {% block nav-account-classes %}{% endblock nav-account-classes %}">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					  {{ user.username }}
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					  <a class="dropdown-item" href="{% url 'profiles:user' %}">My account</a>
+					  <a class="dropdown-item" href="{% url 'profiles:logout' %}">Log out</a>
+					</div>
+				 	</li> -->
+
+					<li class="nav-item {% block nav-bla-classes %}{% endblock nav-bla-classes %}">
 						<a class="nav-link h6" href="{% url 'profiles:user' %}">My account</a>
 					</li>
 					<li class="nav-item {% block nav-logout-classes %}{% endblock nav-logout-classes %}">
 						<a class="nav-link h6" href="{% url 'profiles:logout' %}">Logout</a>
 					</li>
+					
+						
 					<!-- <li class="nav-item dropdown mr-auto">
 						<a href="#" class="nav-link h6 dropdown-toggle" data-toggle="dropdown">{{ user.first_name }}</a>
 						<div class="dropdown-menu dropdown-menu-right">
@@ -82,10 +94,20 @@
 					</li> -->
 
 				{% else %}
+					<!-- <li class="nav-item dropdown {% block nav-login-classes %}{% endblock nav-login-classes %}">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					  Account
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					  <a class="dropdown-item" href="{% url 'profiles:signup' %}">Sign up</a>
+					  <a class="dropdown-item" href="{% url 'profiles:login' %}">Log in</a>
+					</div>
+				 	</li> -->
+					
 					<li class="nav-item {% block nav-signup-classes %}{% endblock nav-signup-classes %}">
 						<a class="nav-link h6" href="{% url 'profiles:signup' %}">Sign up</a>
 					</li>
-					<li class="nav-item {% block nav-login-classes %}{% endblock nav-login-classes %}">
+					<li class="nav-item {% block nav-log-classes %}{% endblock nav-log-classes %}">
 						<a class="nav-link h6" href="{% url 'profiles:login' %}">Log in</a>
 					</li>
 				{% endif %}

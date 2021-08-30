@@ -10,8 +10,8 @@ class CountryAdmin(admin.ModelAdmin):
     list_display = ('code', 'name', 'is_under_represented')
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('name', 'position', 'institution')
-    search_fields = ('name', 'institution', 'email')
+    list_display = ('first_name','last_name', 'position', 'institution')
+    search_fields = ('first_name','last_name', 'institution', 'email')
 
 
 class CustomUserAdmin(UserAdmin):

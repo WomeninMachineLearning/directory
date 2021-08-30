@@ -24,7 +24,8 @@
 			<div class="pt-2 mt-4 w-100 text-muted">
 				<form method="post">
 					{% csrf_token %}
-					{{ form.name|as_crispy_field }}
+					{{ form.first_name|as_crispy_field }}
+					{{ form.last_name|as_crispy_field }}
 					{{ form.institution|as_crispy_field }}
 					{{ form.country|as_crispy_field }}
 					{{ form.position|as_crispy_field }}

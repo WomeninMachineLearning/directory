@@ -26,7 +26,8 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = (
-            'name',
+            'first_name',
+            'last_name',
             'institution',
             'country',
             'contact_email',
@@ -39,7 +40,8 @@ class UserProfileForm(forms.ModelForm):
             'keywords',
         )
         labels = {
-            'name': _('Full Name'),
+            'first_name': _('First name, as you would like it to appear publicly'),
+            'last_name': _('Last name, as you would like it to appear publicly'),
             'institution': _('Institution/Company'),
             'contact_email': _('Contact email address'),
             'webpage': _('Linked In or web page'),

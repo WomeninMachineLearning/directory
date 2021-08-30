@@ -164,7 +164,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     is_public = models.BooleanField(default=True)
 
-    name = models.CharField(max_length=100, blank=False)
+    first_name = models.CharField(max_length=100, blank=False)
+    last_name = models.CharField(max_length=100, blank=False)
     contact_email = models.EmailField(blank=True)
     webpage = models.URLField(blank=True)
     institution = models.CharField(max_length=100, blank=False)
@@ -184,7 +185,7 @@ class Profile(models.Model):
     last_updated = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['name', 'institution', 'last_updated']
+        ordering = ['last_name', 'institution', 'last_updated']
 
     def __str__(self):
         return f'{self.name}, {self.institution}'
