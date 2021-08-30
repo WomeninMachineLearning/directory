@@ -1,7 +1,7 @@
 from django.core.mail import EmailMultiAlternatives
 from django.template import loader
 
-import winrepo.settings as settings
+import main_app.settings as settings
 
 
 def build_email(subject_template_name, email_template_name, html_email_template_name, context=None):

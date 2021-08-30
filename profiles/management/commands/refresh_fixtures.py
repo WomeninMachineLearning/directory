@@ -2,7 +2,7 @@ import random
 from django.core import management
 from django.core.management.base import BaseCommand, CommandError
 
-import winrepo.settings as settings
+import main_app.settings as settings
 from profiles.models import Country, User, Profile
 from profiles.models import (
     METHODS_CHOICES,
@@ -119,5 +119,5 @@ class Command(BaseCommand):
             'auth',
             natural_primary=True,
             natural_foreign=True,
-            output='profiles/fixtures/winrepo.json'
+            output='profiles/fixtures/database.json'
         )

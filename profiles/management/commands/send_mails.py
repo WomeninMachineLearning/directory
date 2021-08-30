@@ -1,6 +1,6 @@
 from django.core import management
 from django.core.management.base import BaseCommand, CommandError
-import winrepo.settings as settings
+import main_app.settings as settings
 
 from profiles.emails import user_create_confirm_email
 from profiles.models import User

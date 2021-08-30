@@ -68,7 +68,7 @@ METHODS_CHOICES = (
     ('PR', 'Probabilistic methods'),
     ('OPT','Optimization methods'),
     ('LT', 'Learning theory'),
-    ('TR', 'Trustworthy ML: safety, robustness, transparency, fairness, privacy, interpretability'),
+    ('TR', 'Trustworthy ML'),
     ('HAI', 'Humans and AI'),
 )
 

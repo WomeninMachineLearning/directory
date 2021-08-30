@@ -15,7 +15,7 @@
 {% block nav-repository-classes %}{{ block.super }} active{% endblock nav-repository-classes %}
 
 {% block full_page_content %}
-	<div id="list-search" class="w-100 bg-secondary">
+	<div id="list-search" class="w-100 bg-tertiary">
 		<form method="get">
 			<div id="search-container" class="form-row p-2">
 				<div class="col-12 col-sm-6 offset-sm-3">
@@ -64,13 +64,7 @@
 							<p class="m-1"><i class="fas fa-map-marker-alt"></i> <span>{{ profile.country }}</span></p>
 						</div>
 
-						<div class="d-none">
-							<dl>
-								<dt>Methods</dt><dd>{{ profile.methods }}</dd>
-								<dt>Applications</dt><dd>{{ profile.applications }}</dd>
-							</dl>
-						</div>
-						<div class="keywords-list col-lg-3 mt-1 d-none d-lg-block text-tertiary">{{ profile.keywords}}</div>
+						<div class="keywords-list col-lg-3 mt-1 d-none d-lg-block text-secondary">{%if profile.methods %}{{ profile.methods }}, {% endif %} {%if profile.applications %}{{ profile.applications }}, {% endif %} {{ profile.keywords }}</div>
 						<div class="actions col-xs-12 col-sm-4 col-md-2 text-xs-left text-sm-right">
 							<a class="btn pill-btn btn-outline-primary w-75 m-2" href="{% url 'profiles:detail' profile.id %}">View Profile</a>
 						</div>
