@@ -122,4 +122,4 @@ pylintrc
 Scripts
 
 # node modules for boostrap
-tools/bootstrap-wiml/node_modules/
+**/node_modules/
