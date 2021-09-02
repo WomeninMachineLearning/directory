@@ -35,9 +35,9 @@
 {% block full_page_content %}
 <div class="container-fluid p-0">
 	<picture id="hero-image">
-		<!-- <source srcset="{% static 'profiles/images/banner2-1600.webp' %}" type="image/webp"> -->
-		<source srcset="{% static 'profiles/images/holder_banner.jpg' %}" type="image/jpeg"> 
-		<img src="{% static 'profiles/images/holder_banner.jpg' %}" alt="Header Image">
+		<source srcset="{% static 'profiles/images/wiml_banner.webp' %}" type="image/webp">
+		<source srcset="{% static 'profiles/images/wiml_banner.png' %}" type="image/png"> 
+		<img src="{% static 'profiles/images/wiml_banner.png' %}" alt="Header Image">
 	</picture>
 </div>
 <div class="container-fluid" id="home-search">
@@ -49,13 +49,13 @@
 <div class="container-fluid bg-secondary text-white pt-5 pb-5" id="intro-container">
 	<div class="row no-gutters p-4">
 		<div class="col-md-4 offset-md-4 text-center">
-			<h1> Women in Machine Learning </h1>
+			<h1 id="women-text"> Women in Machine Learning </h1>
 		</div>
 	</div>
 	<div class="row no-gutters p-4">
 		<div  class="col-md-10 offset-md-1" id="intro-text" >
 			<p class="h5 text-justify">Despite some effort from the community and
-				<a class="text-quinary" href="{% url 'profiles:faq' %}#heading-resources">great initiatives</a>, women are
+				<a class="text-success" href="{% url 'profiles:faq' %}#heading-resources">great initiatives</a>, women are
 				still under-represented in machine learning.
 				The aim of this directory of Women in Machine Learning is to help you identify
 				women researchers or practitioners for conferences, symposia or collaborations.</p>
@@ -63,10 +63,10 @@
 	</div>
 	<div class="d-flex flex-wrap justify-content-around header-buttons">
 		<div class="m-2">
-			<a href="{% url 'profiles:index' %}" class="btn pill-btn header-btn text-white">View Directory</a>
+			<a href="{% url 'profiles:index' %}" class="btn pill-btn header-btn text-success">View Directory</a>
 		</div>
 		<div class="m-2">
-			<a href="{% url 'profiles:signup' %}" class="btn pill-btn header-btn text-white">Create Profile</a>
+			<a href="{% url 'profiles:signup' %}" class="btn pill-btn header-btn text-success">Create Profile</a>
 		</div>
 	</div>
 </div>

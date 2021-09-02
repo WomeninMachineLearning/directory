@@ -30,6 +30,10 @@
 	margin: auto;
 }
 
+#women-text{
+	color: #a2ccfc !important;
+}
+
 .pill-btn {
 	padding: 12px 0;
 	border-radius: 50px;
@@ -42,12 +46,12 @@
 }
 
 .header-btn {
-	border-color: white;
+	border-color: #a2ccfc;
 }
 
 .header-btn:hover {
 	background-color: rgba(255,255,255,0.12);
-	color: white;
+	color:#a2ccfc;
 }
 
 /* Stats */
