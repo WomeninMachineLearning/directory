@@ -82,7 +82,8 @@ class ListProfiles(ListView):
                     if st_regex.match(x[1]))
 
                 st_conditions = [
-                    Q(name__icontains=st),
+                    Q(first_name__icontains=st),
+                    Q(last_name__icontains=st),
                     Q(institution__icontains=st),
                     Q(position__icontains=st),
                     Q(country__name__icontains=st),

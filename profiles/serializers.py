@@ -17,7 +17,7 @@ class CountrySerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ('id', 'name')
+        fields = ('id', 'last_name')
 
 
 class PositionsCountSerializer(serializers.ModelSerializer):
