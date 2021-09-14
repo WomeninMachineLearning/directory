@@ -218,7 +218,7 @@ class UserDeleteView(LoginRequiredMixin, FormView):
                 user.save()
 
             messages.success(self.request, self.success_message)
-            return redirect('profiles:login')
+            return redirect('profiles:home')
 
         return super().get(request, *args, **kwargs)
 
@@ -238,7 +238,7 @@ class UserDeleteView(LoginRequiredMixin, FormView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('profiles:login')
+        return reverse('profiles:home')
 
 
 class UserCreateView(CreateView):
