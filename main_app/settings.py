@@ -168,8 +168,8 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = config('EMAIL_USE_TLS') == 'True'
 EMAIL_USE_SSL = config('EMAIL_USE_SSL') == 'True'
 
-EMAIL_FROM = 'noreply@wimlworkshop.org'
-EMAIL_SUBJECT_PREFIX = 'WiML - '
+EMAIL_FROM = config('DEFAULT_FROM_EMAIL')
+EMAIL_SUBJECT_PREFIX = 'WiML Directory - '
 
 # Sites settings
 SITE_ID = config('SITE_ID', cast=int)
