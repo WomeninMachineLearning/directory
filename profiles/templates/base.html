@@ -1,7 +1,7 @@
 {% load bootstrap4 %}
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html class=h-100 lang="en">
 <head>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135954731-1"></script>
@@ -46,7 +46,8 @@
   <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
 
 </head>
-<body>
+<body class=h-100>
+<div class="container-fluid pr-0 pl-0 h-100 d-flex flex-column">
 	<nav class="navbar fixed-top navbar-custom navbar-light shadow-sm navbar-expand-md">
 		<a class="navbar-brand" href="{% url 'profiles:home' %}">
 			<picture id="wiml-logo">
@@ -147,7 +148,7 @@
 	{% endblock page_container %}
 
 	{% block footer %}
-	<footer class="page-footer font-small bg-secondary text-white p-4 mt-4">
+	<footer class="page-footer font-small bg-secondary text-white p-4 mt-auto">
 		<div class="d-flex flex-wrap justify-content-center">
 			<div class="col-12 col-md-5 text-md-left text-sm-center" style="vertical-align:middle;line-height:1.5rem">
 				<span class="font-weight-bold mx-1 align-middle">WiML Directory</span>
@@ -175,5 +176,6 @@
 	{% block footer_scripts %}
 		{% bootstrap_javascript jquery=1 %}
 	{% endblock footer_scripts %}
+</div>
 </body>
 </html>
