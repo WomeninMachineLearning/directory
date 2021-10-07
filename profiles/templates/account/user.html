@@ -28,7 +28,7 @@
 		<div class="col-12 col-lg-7 pl-3 mt-5 mt-lg-0">
 			<h3 class="text-primary font-weight-bold mt-2">
 				<span class="text-secondary"><i class="fas fa-chevron-circle-right"></i></span>
-				Profile
+				Public profile
 				{% if user.profile %}
 					<div class="float-right">
 						<a class="btn btn-outline-primary pill-btn" href="{% url 'profiles:user_profile_edit' %}">Edit</a>
@@ -89,10 +89,10 @@
 				</div>
 			{% else %}
 
-				<p>Please fill out a more detailed work profile! This information can be made public in our directory.</p>
+				<p>Do you want to appear in our directory? Please fill out a more detailed work profile.</p>
 
-				<a class="btn btn-primary ml-5 mr-5" style="white-space: normal;" href="{% url 'profiles:user_profile_edit' %}" role="button">
-					Further information
+				<a class="btn btn-primary ml-5 mr-5 pill-btn" style="white-space: normal;" href="{% url 'profiles:user_profile_edit' %}" role="button">
+					My profile
 				</a>
 			
 			{% endif %}
