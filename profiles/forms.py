@@ -18,6 +18,7 @@ class UserForm(forms.ModelForm):
         fields = (
             'username',
             'email',
+            'name',
         )
 
 
