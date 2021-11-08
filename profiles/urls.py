@@ -63,6 +63,8 @@ urlpatterns = [
          name='forgot'),
     path('login/forgot/confirm', views.UserPasswordResetConfirmView.as_view(),
          name='forgot_confirm'),
+     path('login/resend_confirmation', views.UserResendEmailConfirmationView.as_view(),
+         name='resend_confirmation'),
 
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
          name='django.contrib.sitemaps.views.sitemap'),

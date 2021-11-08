@@ -306,10 +306,10 @@ class UserPasswordResetView(FormView):
             uid =_to_token(user, 'email')
             token = self.token_generator.make_token(user)
             user_reset_password_email(self.request, user, uid, token).send()
+            messages.success(self.request, self.success_message)
         except User.DoesNotExist:
             messages.error(self.request, self.error_message)
-
-        messages.success(self.request, self.success_message)
+ 
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -358,6 +358,35 @@ class UserPasswordResetConfirmView(FormView):
     def get_success_url(self):
         messages.success(self.request, self.success_message)
         return reverse('profiles:login')
+
+
+class UserResendEmailConfirmationView(FormView):
+    form_class = PasswordResetForm
+    template_name = 'registration/resend_email_confirmation.html'
+    token_generator = default_token_generator
+    success_message = 'Please check your email address for directions on how to verify your account.'
+    error_message = 'This email is not linked to a WiML account.'
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('profiles:user')
+        return super().get(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        try:
+            email = form.cleaned_data['email']
+            user = User.objects.get(**{ 'email': email })
+            uid =_to_token(user, 'email')
+            token = self.token_generator.make_token(user)
+            user_create_confirm_email(self.request, user, uid, token).send()
+            messages.success(self.request, self.success_message)
+        except User.DoesNotExist:
+            messages.error(self.request, self.error_message)
+      
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('profiles:resend_confirmation')
 
 
 class CountriesAutocomplete(Select2QuerySetView):
