@@ -15,6 +15,11 @@
 			<p>An e-mail has been sent to the address provided. Check your spam folder if you don't receive it.</p>
 				
 			<p>Please confirm your registration by clicking on the link in the email to enable the log in.</p>
+			<div class="text-center">
+				<label class="form-check-label" for="defaultCheck1">Did not receive an e-mail?
+					<a href="{% url 'profiles:resend_confirmation' %}"> Resend account confirmation </a>
+				</label>
+			</div>
 		</div>
 	</div>
 </div>
