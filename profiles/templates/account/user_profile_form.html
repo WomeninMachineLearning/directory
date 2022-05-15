@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block title %}
 	{{ block.super }} - Edit Profile
@@ -26,6 +27,8 @@
 					{% csrf_token %}
 					{{ form.first_name|as_crispy_field }}
 					{{ form.last_name|as_crispy_field }}
+					{{ form.preferred_pronoun|as_crispy_field }}
+					{{ form.other_pronoun|as_crispy_field }}
 					{{ form.institution|as_crispy_field }}
 					{{ form.country|as_crispy_field }}
 					{{ form.position|as_crispy_field }}
@@ -62,3 +65,8 @@
 </div>
 
 {% endblock content %}
+
+{% block footer_scripts %}
+	{{ block.super }}
+	<script src="{% static 'profiles/js/preferred-pronoun.js' %}?v=1"></script>
+{% endblock footer_scripts %}

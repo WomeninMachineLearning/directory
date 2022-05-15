@@ -43,6 +43,13 @@ POSITION_CHOICES = (
     (DIR, 'Director/founder/advisor'),
 )
 
+PRONOUN_CHOICES = (
+    ('HHH', 'He/Him/His'),
+    ('SHH', 'She/Her/Hers'),
+    ('TTT', 'They/Them/Their'),
+    ('OTHER', 'Other')
+)
+
 MONTHS_CHOICES = (
     ('01', 'January'),
     ('02', 'February'),
@@ -166,6 +173,9 @@ class Profile(models.Model):
 
     first_name = models.CharField(max_length=100, blank=False)
     last_name = models.CharField(max_length=100, blank=False)
+    preferred_pronoun = models.CharField(max_length=100, choices=PRONOUN_CHOICES, 
+                                        blank=True)
+    other_pronoun = models.CharField(max_length=100, blank=True)
     contact_email = models.EmailField(blank=True)
     webpage = models.URLField(blank=True)
     institution = models.CharField(max_length=100, blank=False)
