@@ -57,7 +57,7 @@ class UserProfileForm(forms.ModelForm):
                             'and would like my profile to appear in the public directory.'),
         }
         help_texts = {
-            'preferred_pronoun': _('This helps the coordinators address the candidates in an appropriate manner.'),
+            'preferred_pronoun': _('This ensures you are addressed in the appropriate manner when contacted.'),
             'contact_email': _('A public email address for contact, typically '
                         'institutional (avoid using a personal address).'),
             'country': _('Country of the institution'),
