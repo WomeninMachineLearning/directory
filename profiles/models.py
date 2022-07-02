@@ -24,6 +24,12 @@ PRF = 'Professor'
 PM = 'Program/product manager'
 DIR = 'Director/founder/advisor'
 
+PNTS = 'Prefer not to say'
+HHH = 'He/Him/His'
+SHH = 'She/Her/Hers'
+TTT = 'They/Them/Their'
+OTHER = 'Other'
+
 POSITION_CHOICES = (
     (US,'Undergraduate student'),
     (MS, 'Masters student'),
@@ -44,10 +50,11 @@ POSITION_CHOICES = (
 )
 
 PRONOUN_CHOICES = (
-    ('HHH', 'He/Him/His'),
-    ('SHH', 'She/Her/Hers'),
-    ('TTT', 'They/Them/Their'),
-    ('OTHER', 'Other')
+    (PNTS, 'Prefer not to say'),
+    (HHH, 'He/Him/His'),
+    (SHH, 'She/Her/Hers'),
+    (TTT, 'They/Them/Their'),
+    (OTHER, 'Other')
 )
 
 MONTHS_CHOICES = (
@@ -174,8 +181,8 @@ class Profile(models.Model):
     first_name = models.CharField(max_length=100, blank=False)
     last_name = models.CharField(max_length=100, blank=False)
     preferred_pronoun = models.CharField(max_length=100, choices=PRONOUN_CHOICES, 
-                                        blank=True)
-    other_pronoun = models.CharField(max_length=100, blank=True)
+                                        blank=True, default='Prefer not to say')
+    other_pronoun = models.CharField(max_length=100, blank=False, default='Prefer not to say')
     contact_email = models.EmailField(blank=True)
     webpage = models.URLField(blank=True)
     institution = models.CharField(max_length=100, blank=False)
