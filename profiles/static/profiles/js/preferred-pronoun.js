@@ -16,9 +16,7 @@ window.onload = function() {
             $("#id_other_pronoun").hide();
             document.getElementById("id_other_pronoun").value = document.getElementById("id_preferred_pronoun").value;
         }
-		
         return True
-    });
-    
+    }); 
 }
 )();
