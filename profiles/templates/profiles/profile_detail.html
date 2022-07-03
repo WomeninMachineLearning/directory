@@ -23,7 +23,8 @@
 <div class="row no-gutters">
 	<div class="col-xs-6 col-sm-8 col-md-9 text-muted details-grey">
 		<h2 class="text-secondary font-weight-bold">{{ profile.first_name }} {{ profile.last_name }}</h2>
-		<p class="m-1"><i class="fas fa-user"></i> {{ profile.position }}</p>
+		{% if profile.preferred_pronoun != "Prefer not to say" and profile.preferred_pronoun != "" %} <p class="m-1"><i class="fas fa-user"></i> {{ profile.other_pronoun }}</p>{% endif %}
+		<p class="m-1"><i class="fas fa-briefcase"></i> {{ profile.position }}</p>
 		<p class="m-1"><i class="fas fa-university"></i> {{ profile.institution }}</p>
 		<p class="m-1"><i class="fas fa-map-marker-alt"></i> {{ profile.country }}</p>
 		{% if profile.grad_year %}<p class="m-1"><i class="fas fa-graduation-cap"></i> {{ profile.grad_month_labels }} {{ profile.grad_year }}</p>{% endif %}

@@ -88,10 +88,11 @@ class Command(BaseCommand):
 
             position = random.choice(POSITION_CHOICES)[0]
             preferred_pronoun = random.choice(PRONOUN_CHOICES)[0]
-            other_pronoun = ''
-            if preferred_pronoun == 'OTHER':
-                other_pronoun = 'xey/xem/xyr'
 
+            if preferred_pronoun == 'Other':
+                other_pronoun = 'xey/xem/xyr'
+            else:
+                other_pronoun = preferred_pronoun
 
             user = User.objects.create_user(
                 username=name+surname+str(random.randint(1,100)),

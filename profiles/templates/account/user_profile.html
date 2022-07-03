@@ -24,7 +24,8 @@
 	<div class="row no-gutters">
 		<div class="col-xs-6 col-sm-8 col-md-9 text-muted details-grey">
 			<h2 class="text-primary font-weight-bold">{{ user.profile.first_name }} {{ user.profile.last_name }}</h2>
-			<p class="m-1"><i class="fas fa-user"></i> {{ user.profile.position }}</p>
+			{% if user.profile.preferred_pronoun != "Prefer not to say" and  user.profile.preferred_pronoun != "" %} <p class="m-1"><i class="fas fa-user"></i> {{ user.profile.other_pronoun }}</p>{% endif %}
+			<p class="m-1"><i class="fas fa-briefcase"></i> {{ user.profile.position }}</p>
 			<p class="m-1"><i class="fas fa-university"></i> {{ user.profile.institution }}</p>
 			<p class="m-1"><i class="fas fa-map-marker-alt"></i> {{ user.profile.country }}</p>
 			{% if user.profile.grad_year %}<p class="m-1"><i class="fas fa-graduation-cap"></i> {{ user.profile.grad_month_labels }} {{ user.profile.grad_year }}</p>{% endif %}

@@ -59,7 +59,8 @@
 							<h5 class="text-secondary font-weight-bold">{{ profile.first_name }} {{ profile.last_name }}</h5>
 						</div>
 						<div class="col-xs-12 col-sm-4 col-lg-3 text-tertiary">
-							<p class="m-1"><i class="fas fa-user"></i> <span>{{ profile.position }}</span></p>
+							{% if profile.preferred_pronoun != "Prefer not to say" and  profile.preferred_pronoun != "" %} <p class="m-1"><i class="fas fa-user"></i> {{ profile.other_pronoun }}</p>{% endif %}
+							<p class="m-1"><i class="fas fa-briefcase"></i> <span>{{ profile.position }}</span></p>
 							<p class="m-1"><i class="fas fa-university"></i> <span>{{ profile.institution }}</span></p>
 							<p class="m-1"><i class="fas fa-map-marker-alt"></i> <span>{{ profile.country }}</span></p>
 						</div>
