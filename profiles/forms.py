@@ -28,6 +28,8 @@ class UserProfileForm(forms.ModelForm):
         fields = (
             'first_name',
             'last_name',
+            'preferred_pronoun',
+            'other_pronoun',
             'institution',
             'country',
             'contact_email',
@@ -41,6 +43,8 @@ class UserProfileForm(forms.ModelForm):
             'is_public',
         )
         labels = {
+            'preferred_pronoun': _('Preferred Pronoun'),
+            'other_pronoun': False,
             'institution': _('Institution/Company'),
             'contact_email': _('Contact email address'),
             'webpage': _('Linked In or web page'),
@@ -53,6 +57,7 @@ class UserProfileForm(forms.ModelForm):
                             'and would like my profile to appear in the public directory.'),
         }
         help_texts = {
+            'preferred_pronoun': _('This ensures you are addressed in the appropriate manner when contacted. If you select \'Prefer not to say\', pronouns will not be displayed on your public profile.'),
             'contact_email': _('A public email address for contact, typically '
                         'institutional (avoid using a personal address).'),
             'country': _('Country of the institution'),
@@ -68,6 +73,11 @@ class UserProfileForm(forms.ModelForm):
                           'by commas.'),
             'is_public': _('Tick this box to have your profile appear in the directory.'),
         }
+
+        widgets = {
+                'other_pronoun': forms.TextInput(attrs={'placeholder': 'Enter your custom poronouns here, e.g. xey/xem/xyr'})
+            }
+
         # widgets = {
         #         'country': ModelSelect2(
         #             url='profiles:countries_autocomplete',

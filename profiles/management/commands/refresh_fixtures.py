@@ -9,6 +9,7 @@ from profiles.models import (
     APPLICATIONS_CHOICES,
     MONTHS_CHOICES,
     POSITION_CHOICES,
+    PRONOUN_CHOICES
 )
 
 class Command(BaseCommand):
@@ -86,6 +87,14 @@ class Command(BaseCommand):
             email = slug + '@' + institution.lower().replace(' ', '-') + '.edu'
 
             position = random.choice(POSITION_CHOICES)[0]
+            preferred_pronoun = random.choice(PRONOUN_CHOICES)[0]
+
+            if preferred_pronoun == 'Other':
+                other_pronoun = 'xey/xem/xyr'
+            elif preferred_pronoun == '':
+                other_pronoun = 'None'
+            else:
+                other_pronoun = preferred_pronoun
 
             user = User.objects.create_user(
                 username=name+surname+str(random.randint(1,100)),
@@ -99,6 +108,8 @@ class Command(BaseCommand):
                 user=user,
                 first_name=name,
                 last_name=surname,
+                preferred_pronoun = preferred_pronoun,
+                other_pronoun = other_pronoun,
                 contact_email=email,
                 webpage='http://'+slug+'.me',
                 institution=institution,
