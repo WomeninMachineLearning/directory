@@ -91,6 +91,8 @@ class Command(BaseCommand):
 
             if preferred_pronoun == 'Other':
                 other_pronoun = 'xey/xem/xyr'
+            elif preferred_pronoun == '':
+                other_pronoun = 'None'
             else:
                 other_pronoun = preferred_pronoun
 
